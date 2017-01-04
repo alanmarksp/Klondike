@@ -1,7 +1,8 @@
 package klondike;
 
-import klondike.controllers.Controller;
+import klondike.controllers.ScenarioController;
 
 public interface Logic {
-    Controller getController();
+
+    ScenarioController getController();
 }

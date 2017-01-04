@@ -1,6 +1,6 @@
 package klondike;
 
-import klondike.controllers.Controller;
+import klondike.controllers.ScenarioController;
 
 public class Klondike {
 
@@ -9,18 +9,20 @@ public class Klondike {
     private View view;
 
     private Klondike(Logic logic, View view) {
+        assert logic != null;
+        assert view != null;
         this.logic = logic;
         this.view = view;
     }
 
     private void play() {
-        Controller controller;
+        ScenarioController scenarioController;
         do {
-            controller = logic.getController();
-            if (controller != null) {
-                view.interact(controller);
+            scenarioController = logic.getController();
+            if (scenarioController != null) {
+                view.interact(scenarioController);
             }
-        } while (controller != null);
+        } while (scenarioController != null);
     }
 
     public static void main(String[] args) {

@@ -8,7 +8,7 @@ class ClosedIntervalView {
 
     private IO io;
 
-    public ClosedIntervalView(String title, ClosedInterval closedInterval) {
+    ClosedIntervalView(String title, ClosedInterval closedInterval) {
         assert title != null;
         assert closedInterval != null;
         this.title = title;
@@ -16,7 +16,7 @@ class ClosedIntervalView {
         io = new IO();
     }
 
-    public void writeln() {
+    void writeln() {
         io.writeln(title + " " + this.toString());
     }
 
