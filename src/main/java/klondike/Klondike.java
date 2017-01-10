@@ -1,6 +1,7 @@
 package klondike;
 
 import klondike.controllers.ScenarioController;
+import klondike.views.console.MainView;
 
 public class Klondike {
 
@@ -26,7 +27,7 @@ public class Klondike {
     }
 
     public static void main(String[] args) {
-        new Klondike(new klondike.controllers.local.Logic(), new klondike.views.console.View()).play();
+        new Klondike(new klondike.controllers.local.Logic(), new MainView()).play();
     }
 
 }

@@ -3,7 +3,7 @@ package klondike.controllers.local;
 import klondike.models.Game;
 import klondike.models.State;
 
-abstract class Controller {
+abstract class Controller implements klondike.controllers.Controller {
 
     private Game game;
 
@@ -12,12 +12,22 @@ abstract class Controller {
         this.game = game;
     }
 
-    State getState() {
+    protected State getState() {
         return game.getState();
     }
 
-    void setState(State state) {
+    protected void setState(State state) {
         game.setState(state);
+    }
+
+    @Override
+    public Game getGame() {
+        return game;
+    }
+
+    @Override
+    public int getGameMode() {
+        return Game.getGameMode();
     }
 
     void reset() {

@@ -1,6 +1,8 @@
 package klondike.controllers;
 
-public interface ScenarioController {
+import klondike.controllers.visitors.ScenarioControllerVisitor;
+
+public interface ScenarioController extends Controller {
 
     void accept(ScenarioControllerVisitor scenarioControllerVisitor);
 }

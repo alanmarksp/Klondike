@@ -7,21 +7,26 @@ public class Logic implements klondike.Logic {
 
     private Game game;
 
-    private PlayController playController;
+    private StartController startController;
+
+    private GameController gameController;
 
     private ContinueController continueController;
 
     public Logic() {
         game = new Game();
-        playController = new PlayController(game);
+        startController = new StartController(game);
+        gameController = new GameController(game);
         continueController = new ContinueController(game);
     }
 
     @Override
     public ScenarioController getController() {
         switch (game.getState()) {
+            case INITIAL:
+                return startController;
             case IN_GAME:
-                return playController;
+                return gameController;
             case FINAL:
                 return continueController;
             case EXIT:

@@ -1,6 +1,6 @@
 package klondike.controllers.local;
 
-import klondike.controllers.ScenarioControllerVisitor;
+import klondike.controllers.visitors.ScenarioControllerVisitor;
 import klondike.models.Game;
 import klondike.models.State;
 
@@ -20,7 +20,7 @@ public class ContinueController extends Controller implements klondike.controlle
         assert this.getState() == State.FINAL;
         if (restart) {
             this.reset();
-            this.setState(State.IN_GAME);
+            this.setState(State.INITIAL);
         } else {
             this.setState(State.EXIT);
         }

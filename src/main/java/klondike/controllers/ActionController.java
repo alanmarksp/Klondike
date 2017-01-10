@@ -1,5 +1,8 @@
 package klondike.controllers;
 
-public interface ActionController {
+import klondike.controllers.visitors.ActionControllerVisitor;
 
+public interface ActionController extends Controller {
+
+    void accept(ActionControllerVisitor actionControllerVisitor);
 }
