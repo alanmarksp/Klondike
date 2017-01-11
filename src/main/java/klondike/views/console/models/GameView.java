@@ -1,13 +1,14 @@
-package klondike.views.console;
+package klondike.views.console.models;
 
 import klondike.models.CardSuit;
 import klondike.models.Game;
+import klondike.views.console.BaseView;
 
-public class TableView extends BaseView {
+public class GameView extends BaseView {
 
     private Game game;
 
-    public TableView(Game game) {
+    public GameView(Game game) {
         this.game = game;
     }
 

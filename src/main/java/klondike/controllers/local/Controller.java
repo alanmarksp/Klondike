@@ -3,11 +3,11 @@ package klondike.controllers.local;
 import klondike.models.Game;
 import klondike.models.State;
 
-abstract class Controller implements klondike.controllers.Controller {
+public abstract class Controller implements klondike.controllers.Controller {
 
     private Game game;
 
-    Controller(Game game) {
+    protected Controller(Game game) {
         assert game != null;
         this.game = game;
     }

@@ -1,5 +1,6 @@
-package klondike.controllers.local;
+package klondike.controllers.local.move;
 
+import klondike.controllers.local.Controller;
 import klondike.controllers.visitors.ActionControllerVisitor;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
@@ -8,7 +9,7 @@ import klondike.models.State;
 
 import java.util.Stack;
 
-public abstract class MoveController extends Controller implements klondike.controllers.MoveController {
+public abstract class MoveController extends Controller implements klondike.controllers.move.MoveController {
 
     protected Stack<Card> origin;
 

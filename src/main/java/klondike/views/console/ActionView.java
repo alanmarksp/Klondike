@@ -2,8 +2,10 @@ package klondike.views.console;
 
 import klondike.controllers.*;
 import klondike.controllers.Error;
+import klondike.controllers.move.MoveController;
 import klondike.controllers.visitors.ActionControllerVisitor;
 import klondike.utils.LimitedIntDialog;
+import klondike.views.console.models.GameView;
 
 public class ActionView extends BaseView implements ActionControllerVisitor {
 
@@ -29,7 +31,7 @@ public class ActionView extends BaseView implements ActionControllerVisitor {
         Error error = flipTableauCardController.validateFlip(tableauStackIndex);
         if (error == null) {
             flipTableauCardController.flip(tableauStackIndex);
-            new TableView(flipTableauCardController.getGame()).show();
+            new GameView(flipTableauCardController.getGame()).show();
             new MenuView().show();
         } else {
             io.writeln(error.toString());

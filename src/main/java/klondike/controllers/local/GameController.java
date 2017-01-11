@@ -1,6 +1,7 @@
 package klondike.controllers.local;
 
 import klondike.controllers.ActionController;
+import klondike.controllers.local.move.*;
 import klondike.controllers.visitors.ScenarioControllerVisitor;
 import klondike.models.Game;
 import klondike.models.State;

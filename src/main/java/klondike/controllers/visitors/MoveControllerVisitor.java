@@ -1,6 +1,6 @@
 package klondike.controllers.visitors;
 
-import klondike.controllers.*;
+import klondike.controllers.move.*;
 
 public interface MoveControllerVisitor {
 

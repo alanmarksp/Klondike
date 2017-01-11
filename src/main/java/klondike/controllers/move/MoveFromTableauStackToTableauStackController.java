@@ -1,4 +1,4 @@
-package klondike.controllers;
+package klondike.controllers.move;
 
 import klondike.models.Card;
 

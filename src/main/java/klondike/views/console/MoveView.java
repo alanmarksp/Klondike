@@ -1,10 +1,11 @@
 package klondike.views.console;
 
 import klondike.controllers.Error;
-import klondike.controllers.*;
+import klondike.controllers.move.*;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.CardSuit;
 import klondike.utils.LimitedIntDialog;
+import klondike.views.console.models.GameView;
 
 public class MoveView extends BaseView implements MoveControllerVisitor {
 
@@ -16,7 +17,7 @@ public class MoveView extends BaseView implements MoveControllerVisitor {
         Error error = moveController.validateMove();
         if (error == null) {
             moveController.move();
-            new TableView(moveController.getGame()).show();
+            new GameView(moveController.getGame()).show();
             if (moveController.isGameOver()) {
                 moveController.finishGame();
             } else {

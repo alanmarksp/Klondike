@@ -1,6 +1,7 @@
-package klondike.views.console;
+package klondike.views.console.models;
 
 import klondike.models.Card;
+import klondike.views.console.BaseView;
 
 import java.util.Stack;
 

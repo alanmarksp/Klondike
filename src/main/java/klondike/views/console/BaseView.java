@@ -2,11 +2,11 @@ package klondike.views.console;
 
 import klondike.utils.IO;
 
-abstract class BaseView {
+public abstract class BaseView {
 
-    IO io;
+    protected IO io;
 
-    BaseView() {
+    protected BaseView() {
         io = new IO();
     }
 }

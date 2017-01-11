@@ -1,22 +1,17 @@
-package klondike.controllers.local;
+package klondike.controllers.local.move;
 
 import klondike.controllers.Error;
-import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
 import klondike.models.CardSuit;
 import klondike.models.CardValue;
 import klondike.models.Game;
 
-public class MoveFromTableauStackToFoundationController extends MoveController implements
-        klondike.controllers.MoveFromTableauStackToFoundationController {
+public class MoveFromWasteToFoundationController extends MoveController implements
+        klondike.controllers.move.MoveFromWasteToFoundationController {
 
-    public MoveFromTableauStackToFoundationController(Game game) {
+    public MoveFromWasteToFoundationController(Game game) {
         super(game);
-    }
-
-    @Override
-    public void accept(MoveControllerVisitor moveControllerVisitor) {
-        moveControllerVisitor.visit(this);
+        origin = game.getWaste();
     }
 
     @Override
@@ -26,15 +21,11 @@ public class MoveFromTableauStackToFoundationController extends MoveController i
             return Error.EMPTY_STACK;
         }
         if (destination.isEmpty() && getOriginCard().getValue() != CardValue.ACE ||
-                !destination.isEmpty() && getOriginCard().getSuit() != getDestinationCard().getSuit()) {
+                !destination.isEmpty() && getOriginCard().getSuit() != getDestinationCard().getSuit() ||
+                !destination.isEmpty() && getDestinationCard().getValue().ordinal() != getOriginCard().getValue().ordinal() + 1) {
             return Error.INVALID_MOVE;
         }
         return null;
-    }
-
-    @Override
-    public void setOrigin(int tableauStackIndex) {
-        origin = getGame().getTableauStack(tableauStackIndex);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package klondike.controllers.local;
+package klondike.controllers.local.move;
 
 import klondike.controllers.Error;
 import klondike.controllers.visitors.MoveControllerVisitor;
@@ -7,7 +7,7 @@ import klondike.models.CardValue;
 import klondike.models.Game;
 
 public class MoveFromWasteToTableauStackController extends MoveController implements
-        klondike.controllers.MoveFromWasteToTableauStackController {
+        klondike.controllers.move.MoveFromWasteToTableauStackController {
 
     public MoveFromWasteToTableauStackController(Game game) {
         super(game);

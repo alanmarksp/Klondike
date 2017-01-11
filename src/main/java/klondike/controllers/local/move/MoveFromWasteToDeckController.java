@@ -1,4 +1,4 @@
-package klondike.controllers.local;
+package klondike.controllers.local.move;
 
 import klondike.controllers.Error;
 import klondike.models.Game;

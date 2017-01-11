@@ -2,7 +2,7 @@ package klondike.controllers.visitors;
 
 import klondike.controllers.ExitGameController;
 import klondike.controllers.FlipTableauCardController;
-import klondike.controllers.MoveController;
+import klondike.controllers.move.MoveController;
 
 public interface ActionControllerVisitor {
 
