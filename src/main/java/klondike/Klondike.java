@@ -16,6 +16,10 @@ public class Klondike {
         this.view = view;
     }
 
+    public static void main(String[] args) {
+        new Klondike(new klondike.controllers.local.Logic(), new MainView()).play();
+    }
+
     private void play() {
         ScenarioController scenarioController;
         do {
@@ -24,10 +28,6 @@ public class Klondike {
                 view.interact(scenarioController);
             }
         } while (scenarioController != null);
-    }
-
-    public static void main(String[] args) {
-        new Klondike(new klondike.controllers.local.Logic(), new MainView()).play();
     }
 
 }

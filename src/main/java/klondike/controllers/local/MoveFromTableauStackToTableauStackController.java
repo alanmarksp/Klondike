@@ -36,7 +36,7 @@ public class MoveFromTableauStackToTableauStackController extends MoveController
     @Override
     public Error validateMove() {
         if (origin.isEmpty()) {
-            return Error.EMPTY_WASTE;
+            return Error.EMPTY_STACK;
         }
         if (!destination.isEmpty() && !getDestinationCard().isFaceUp()) {
             return Error.DESTINATION_CARD_FACE_DOWN;

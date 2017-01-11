@@ -21,7 +21,7 @@ public class MoveFromDeckToWasteController extends MoveController {
     @Override
     public Error validateMove() {
         if (origin.isEmpty()) {
-            return Error.EMPTY_DECK;
+            return Error.EMPTY_STACK;
         }
         return null;
     }

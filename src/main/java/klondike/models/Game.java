@@ -38,6 +38,14 @@ public class Game {
         setTable();
     }
 
+    public static int getNumTableauStacks() {
+        return NUM_TABLEAU_STACKS;
+    }
+
+    public static int getGameMode() {
+        return GAME_MODE;
+    }
+
     public void gatherCards() {
         gatherCardsFromStack(waste);
         foundations.forEach((cardSuit, foundation) -> gatherCardsFromStack(foundation));
@@ -97,13 +105,5 @@ public class Game {
 
     public void setState(State state) {
         this.state = state;
-    }
-
-    public static int getNumTableauStacks() {
-        return NUM_TABLEAU_STACKS;
-    }
-
-    public static int getGameMode() {
-        return GAME_MODE;
     }
 }

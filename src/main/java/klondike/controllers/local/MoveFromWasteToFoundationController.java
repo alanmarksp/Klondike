@@ -18,7 +18,7 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
     public Error validateMove() {
         setDestination(getOriginCard().getSuit());
         if (origin.isEmpty()) {
-            return Error.EMPTY_WASTE;
+            return Error.EMPTY_STACK;
         }
         if (destination.isEmpty() && getOriginCard().getValue() != CardValue.ACE ||
                 !destination.isEmpty() && getOriginCard().getSuit() != getDestinationCard().getSuit()) {
