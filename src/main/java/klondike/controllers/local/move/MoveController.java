@@ -41,7 +41,7 @@ public abstract class MoveController extends Controller implements klondike.cont
 
     @Override
     public void finishGame() {
-        getGame().setState(State.FINAL);
+        this.setState(State.FINAL);
     }
 
     @Override

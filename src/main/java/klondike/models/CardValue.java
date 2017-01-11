@@ -17,7 +17,7 @@ public enum CardValue {
 
     private String message;
 
-    private CardValue(String message) {
+    CardValue(String message) {
         this.message = message;
     }
 

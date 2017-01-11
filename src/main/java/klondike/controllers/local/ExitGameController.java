@@ -6,7 +6,7 @@ import klondike.models.State;
 
 public class ExitGameController extends Controller implements klondike.controllers.ExitGameController {
 
-    ExitGameController(Game game) {
+    public ExitGameController(Game game) {
         super(game);
     }
 

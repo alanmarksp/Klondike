@@ -2,9 +2,9 @@ package klondike.views.console;
 
 import klondike.utils.LimitedIntDialog;
 
-class MenuView extends BaseView {
+public class MenuView extends BaseView {
 
-    public static final int NUM_OPTIONS = 9;
+    private static final int NUM_OPTIONS = 9;
 
     public void show() {
         io.writeln("---------------------------");
@@ -19,7 +19,7 @@ class MenuView extends BaseView {
         io.writeln("9. Salir");
     }
 
-    int getOption() {
+    public int getOption() {
         return new LimitedIntDialog("Opción?", NUM_OPTIONS).read() - 1;
     }
 

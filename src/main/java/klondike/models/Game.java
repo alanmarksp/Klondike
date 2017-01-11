@@ -46,7 +46,7 @@ public class Game {
         return GAME_MODE;
     }
 
-    public void gatherCards() {
+    private void gatherCards() {
         gatherCardsFromStack(waste);
         foundations.forEach((cardSuit, foundation) -> gatherCardsFromStack(foundation));
         tableau.forEach(this::gatherCardsFromStack);

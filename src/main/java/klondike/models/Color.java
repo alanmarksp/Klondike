@@ -1,6 +1,6 @@
 package klondike.models;
 
-enum Color {
+public enum Color {
     RED,
     BLACK
 }

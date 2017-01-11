@@ -6,7 +6,7 @@ import klondike.models.State;
 
 public class StartController extends Controller implements klondike.controllers.StartController {
 
-    StartController(Game game) {
+    public StartController(Game game) {
         super(game);
     }
 

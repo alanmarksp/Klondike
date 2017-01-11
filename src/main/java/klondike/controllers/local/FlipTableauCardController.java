@@ -6,7 +6,7 @@ import klondike.models.Game;
 
 public class FlipTableauCardController extends Controller implements klondike.controllers.FlipTableauCardController {
 
-    FlipTableauCardController(Game game) {
+    public FlipTableauCardController(Game game) {
         super(game);
     }
 

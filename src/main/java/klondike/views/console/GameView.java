@@ -2,7 +2,7 @@ package klondike.views.console;
 
 import klondike.controllers.GameController;
 
-class GameView {
+public class GameView {
 
     private final ActionView actionView;
 

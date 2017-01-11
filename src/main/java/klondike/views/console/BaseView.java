@@ -6,7 +6,7 @@ public abstract class BaseView {
 
     protected IO io;
 
-    protected BaseView() {
+    public BaseView() {
         io = new IO();
     }
 }

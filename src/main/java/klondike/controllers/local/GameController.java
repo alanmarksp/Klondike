@@ -16,7 +16,7 @@ public class GameController extends Controller implements klondike.controllers.G
 
     private List<ActionController> actionControllers;
 
-    GameController(Game game) {
+    public GameController(Game game) {
         super(game);
         actionControllers = new ArrayList<>();
 
