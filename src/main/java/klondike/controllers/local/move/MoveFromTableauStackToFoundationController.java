@@ -11,6 +11,8 @@ import klondike.views.console.ErrorView;
 public class MoveFromTableauStackToFoundationController extends MoveController implements
         klondike.controllers.move.MoveFromTableauStackToFoundationController {
 
+    private int tableauStackIndex;
+
     public MoveFromTableauStackToFoundationController(Game game) {
         super(game);
     }
@@ -27,10 +29,10 @@ public class MoveFromTableauStackToFoundationController extends MoveController i
 
     @Override
     public Error validateMove() {
-        setDestination(getOriginCard().getSuit());
         if (origin.isEmpty()) {
             return Error.EMPTY_STACK;
         }
+        setDestination(getOriginCard().getSuit());
         if (destination.isEmpty() && getOriginCard().getValue() != CardValue.ACE ||
                 !destination.isEmpty() && getOriginCard().getSuit() != getDestinationCard().getSuit() ||
                 !destination.isEmpty() && getDestinationCard().getValue().ordinal() != getOriginCard().getValue().ordinal() + 1) {
@@ -56,6 +58,14 @@ public class MoveFromTableauStackToFoundationController extends MoveController i
 
     @Override
     public Card getDestinationCard() {
-        return destination.peek();
+        if (!destination.isEmpty()) {
+            return destination.peek();
+        }
+        return null;
+    }
+
+    @Override
+    public int getTableauStackIndex() {
+        return tableauStackIndex;
     }
 }

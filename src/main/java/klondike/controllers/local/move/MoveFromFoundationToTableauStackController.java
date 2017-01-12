@@ -11,6 +11,8 @@ import klondike.views.console.ErrorView;
 public class MoveFromFoundationToTableauStackController extends MoveController implements
         klondike.controllers.move.MoveFromFoundationToTableauStackController {
 
+    private CardSuit cardSuit;
+
     public MoveFromFoundationToTableauStackController(Game game) {
         super(game);
     }
@@ -43,6 +45,7 @@ public class MoveFromFoundationToTableauStackController extends MoveController i
 
     @Override
     public void setOrigin(CardSuit cardSuit) {
+        this.cardSuit = cardSuit;
         origin = getFoundation(cardSuit);
     }
 
@@ -60,4 +63,10 @@ public class MoveFromFoundationToTableauStackController extends MoveController i
     public Card getDestinationCard() {
         return destination.peek();
     }
+
+    @Override
+    public CardSuit getCardSuit() {
+        return cardSuit;
+    }
+
 }

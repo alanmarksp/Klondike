@@ -12,4 +12,6 @@ public interface MoveFromTableauStackToFoundationController extends MoveControll
     Card getOriginCard();
 
     Card getDestinationCard();
+
+    int getTableauStackIndex();
 }

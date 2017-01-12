@@ -14,6 +14,8 @@ public class MoveFromTableauStackToTableauStackController extends MoveController
 
     private int numCardsToMove;
 
+    private int tableauStackIndex;
+
     public MoveFromTableauStackToTableauStackController(Game game) {
         super(game);
     }
@@ -84,5 +86,10 @@ public class MoveFromTableauStackToTableauStackController extends MoveController
     @Override
     public Card getDestinationCard() {
         return destination.peek();
+    }
+
+    @Override
+    public int getTableauStackIndex() {
+        return tableauStackIndex;
     }
 }

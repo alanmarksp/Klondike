@@ -21,13 +21,17 @@ public class MoveView implements MoveControllerVisitor {
         if (error == null) {
             moveController.move();
             new GameView(moveController.getGame()).show();
-            if (moveController.isGameOver()) {
-                moveController.finishGame();
-            } else {
-                new MenuView().show();
-            }
+            finishOrContinue(moveController);
         } else {
-            io.writeln(error.toString());
+            new ErrorView(error).interact(moveController);
+        }
+    }
+
+    private void finishOrContinue(MoveController moveController) {
+        if (moveController.isGameOver()) {
+            moveController.finishGame();
+        } else {
+            new MenuView().show();
         }
     }
 

@@ -13,4 +13,6 @@ public interface MoveFromTableauStackToTableauStackController extends MoveContro
     Card getOriginCard();
 
     Card getDestinationCard();
+
+    int getTableauStackIndex();
 }

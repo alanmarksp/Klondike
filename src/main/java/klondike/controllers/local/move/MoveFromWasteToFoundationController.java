@@ -11,6 +11,8 @@ import klondike.views.console.ErrorView;
 public class MoveFromWasteToFoundationController extends MoveController implements
         klondike.controllers.move.MoveFromWasteToFoundationController {
 
+    private CardSuit cardSuit;
+
     public MoveFromWasteToFoundationController(Game game) {
         super(game);
         origin = game.getWaste();
@@ -28,10 +30,10 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
 
     @Override
     public Error validateMove() {
-        setDestination(getOriginCard().getSuit());
         if (origin.isEmpty()) {
             return Error.EMPTY_STACK;
         }
+        setDestination(getOriginCard().getSuit());
         if (destination.isEmpty() && getOriginCard().getValue() != CardValue.ACE ||
                 !destination.isEmpty() && getOriginCard().getSuit() != getDestinationCard().getSuit() ||
                 !destination.isEmpty() && getDestinationCard().getValue().ordinal() != getOriginCard().getValue().ordinal() + 1) {
@@ -42,6 +44,7 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
 
     @Override
     public void setDestination(CardSuit cardSuit) {
+        this.cardSuit = cardSuit;
         destination = getFoundation(cardSuit);
     }
 
@@ -52,6 +55,14 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
 
     @Override
     public Card getDestinationCard() {
-        return destination.peek();
+        if (!destination.isEmpty()) {
+            return destination.peek();
+        }
+        return null;
+    }
+
+    @Override
+    public CardSuit getCardSuit() {
+        return cardSuit;
     }
 }

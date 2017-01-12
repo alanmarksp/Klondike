@@ -31,7 +31,7 @@ public class MoveFromWasteToTableauStackController extends MoveController implem
             return Error.EMPTY_STACK;
         }
         if (!destination.isEmpty() && !getDestinationCard().isFaceUp()) {
-            return Error.ORIGIN_CARD_FACE_DOWN;
+            return Error.DESTINATION_CARD_FACE_DOWN;
         }
         if (destination.isEmpty() && getOriginCard().getValue() != CardValue.KING ||
                 !destination.isEmpty() && getOriginCard().getSuit().isSameColor(getDestinationCard().getSuit()) ||

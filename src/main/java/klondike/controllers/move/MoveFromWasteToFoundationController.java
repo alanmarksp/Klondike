@@ -10,4 +10,6 @@ public interface MoveFromWasteToFoundationController extends MoveController {
     Card getOriginCard();
 
     Card getDestinationCard();
+
+    CardSuit getCardSuit();
 }
