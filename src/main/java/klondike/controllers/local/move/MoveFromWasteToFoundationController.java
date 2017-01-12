@@ -8,7 +8,7 @@ import klondike.models.CardValue;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromWasteToFoundationController extends MoveController implements
+public class MoveFromWasteToFoundationController extends MoveWithCardValidationController implements
         klondike.controllers.move.MoveFromWasteToFoundationController {
 
     private CardSuit cardSuit;
@@ -46,19 +46,6 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
     public void setDestination(CardSuit cardSuit) {
         this.cardSuit = cardSuit;
         destination = getFoundation(cardSuit);
-    }
-
-    @Override
-    public Card getOriginCard() {
-        return origin.peek();
-    }
-
-    @Override
-    public Card getDestinationCard() {
-        if (!destination.isEmpty()) {
-            return destination.peek();
-        }
-        return null;
     }
 
     @Override

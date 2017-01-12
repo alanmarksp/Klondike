@@ -8,7 +8,7 @@ import klondike.models.CardValue;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromFoundationToTableauStackController extends MoveController implements
+public class MoveFromFoundationToTableauStackController extends MoveWithCardValidationController implements
         klondike.controllers.move.MoveFromFoundationToTableauStackController {
 
     private CardSuit cardSuit;
@@ -52,16 +52,6 @@ public class MoveFromFoundationToTableauStackController extends MoveController i
     @Override
     public void setDestination(int tableauStackIndex) {
         destination = getTableauStack(tableauStackIndex);
-    }
-
-    @Override
-    public Card getOriginCard() {
-        return origin.peek();
-    }
-
-    @Override
-    public Card getDestinationCard() {
-        return destination.peek();
     }
 
     @Override

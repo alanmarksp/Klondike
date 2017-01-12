@@ -7,7 +7,7 @@ import klondike.models.CardValue;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromWasteToTableauStackController extends MoveController implements
+public class MoveFromWasteToTableauStackController extends MoveWithCardValidationController implements
         klondike.controllers.move.MoveFromWasteToTableauStackController {
 
     public MoveFromWasteToTableauStackController(Game game) {
@@ -44,15 +44,5 @@ public class MoveFromWasteToTableauStackController extends MoveController implem
     @Override
     public void setDestination(int tableauStackIndex) {
         destination = getTableauStack(tableauStackIndex);
-    }
-
-    @Override
-    public Card getOriginCard() {
-        return origin.peek();
-    }
-
-    @Override
-    public Card getDestinationCard() {
-        return destination.peek();
     }
 }

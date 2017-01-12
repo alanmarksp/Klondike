@@ -9,7 +9,7 @@ import klondike.views.console.ErrorView;
 
 import java.util.Stack;
 
-public class MoveFromTableauStackToTableauStackController extends MoveController implements
+public class MoveFromTableauStackToTableauStackController extends MoveWithCardValidationController implements
         klondike.controllers.move.MoveFromTableauStackToTableauStackController {
 
     private int numCardsToMove;
@@ -76,16 +76,6 @@ public class MoveFromTableauStackToTableauStackController extends MoveController
     @Override
     public void setNumCardsToMove(int numCardsToMove) {
         this.numCardsToMove = numCardsToMove;
-    }
-
-    @Override
-    public Card getOriginCard() {
-        return origin.get(origin.size() - numCardsToMove);
-    }
-
-    @Override
-    public Card getDestinationCard() {
-        return destination.peek();
     }
 
     @Override
