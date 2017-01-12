@@ -1,5 +1,6 @@
 package klondike.views.console;
 
+import klondike.controllers.Action;
 import klondike.controllers.GameController;
 
 public class GameView {
@@ -11,6 +12,6 @@ public class GameView {
     }
 
     void interact(GameController gameController) {
-        actionView.interact(gameController.getActionController(new MenuView().getOption()));
+        actionView.interact(gameController.getActionController(Action.values()[new MenuView().getOption()]));
     }
 }

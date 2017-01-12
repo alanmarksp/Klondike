@@ -2,5 +2,5 @@ package klondike.controllers;
 
 public interface GameController extends ScenarioController {
 
-    ActionController getActionController(int option);
+    ActionController getActionController(Action action);
 }

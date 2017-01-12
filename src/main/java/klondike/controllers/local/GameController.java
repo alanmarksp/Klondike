@@ -1,5 +1,6 @@
 package klondike.controllers.local;
 
+import klondike.controllers.Action;
 import klondike.controllers.ActionController;
 import klondike.controllers.local.move.*;
 import klondike.controllers.visitors.ScenarioControllerVisitor;
@@ -11,8 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameController extends BaseController implements klondike.controllers.GameController {
-
-    private static final int NUM_ACTIONS = 9;
 
     private List<ActionController> actionControllers;
 
@@ -37,9 +36,9 @@ public class GameController extends BaseController implements klondike.controlle
     }
 
     @Override
-    public ActionController getActionController(int option) {
-        assert new ClosedInterval(0, NUM_ACTIONS).includes(option);
+    public ActionController getActionController(Action action) {
+        assert new ClosedInterval(0, Action.values().length).includes(action.ordinal());
         assert this.getState() == State.IN_GAME;
-        return actionControllers.get(option);
+        return actionControllers.get(action.ordinal());
     }
 }
