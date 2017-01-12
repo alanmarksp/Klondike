@@ -5,6 +5,7 @@ import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
 import klondike.models.CardValue;
 import klondike.models.Game;
+import klondike.views.console.ErrorView;
 
 import java.util.Stack;
 
@@ -20,6 +21,11 @@ public class MoveFromTableauStackToTableauStackController extends MoveController
     @Override
     public void accept(MoveControllerVisitor moveControllerVisitor) {
         moveControllerVisitor.visit(this);
+    }
+
+    @Override
+    public void accept(ErrorView errorView) {
+        errorView.visit(this);
     }
 
     @Override

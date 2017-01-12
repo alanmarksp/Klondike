@@ -6,6 +6,7 @@ import klondike.models.Card;
 import klondike.models.CardSuit;
 import klondike.models.CardValue;
 import klondike.models.Game;
+import klondike.views.console.ErrorView;
 
 public class MoveFromTableauStackToFoundationController extends MoveController implements
         klondike.controllers.move.MoveFromTableauStackToFoundationController {
@@ -17,6 +18,11 @@ public class MoveFromTableauStackToFoundationController extends MoveController i
     @Override
     public void accept(MoveControllerVisitor moveControllerVisitor) {
         moveControllerVisitor.visit(this);
+    }
+
+    @Override
+    public void accept(ErrorView errorView) {
+        errorView.visit(this);
     }
 
     @Override

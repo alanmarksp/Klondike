@@ -6,6 +6,7 @@ import klondike.models.Card;
 import klondike.models.CardSuit;
 import klondike.models.CardValue;
 import klondike.models.Game;
+import klondike.views.console.ErrorView;
 
 public class MoveFromWasteToFoundationController extends MoveController implements
         klondike.controllers.move.MoveFromWasteToFoundationController {
@@ -18,6 +19,11 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
     @Override
     public void accept(MoveControllerVisitor moveControllerVisitor) {
         moveControllerVisitor.visit(this);
+    }
+
+    @Override
+    public void accept(ErrorView errorView) {
+        errorView.visit(this);
     }
 
     @Override

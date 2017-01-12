@@ -2,11 +2,13 @@ package klondike.views.console.models;
 
 import klondike.models.Card;
 import klondike.models.CardSuit;
-import klondike.views.console.BaseView;
+import klondike.utils.IO;
 
 import java.util.Stack;
 
-public class Foundation extends BaseView {
+public class Foundation {
+
+    private IO io = new IO();
 
     private Stack<Card> foundation;
 

@@ -1,11 +1,13 @@
 package klondike.views.console.models;
 
 import klondike.models.Card;
-import klondike.views.console.BaseView;
+import klondike.utils.IO;
 
 import java.util.Stack;
 
-public class DeckView extends BaseView {
+public class DeckView {
+
+    private IO io = new IO();
 
     private Stack<Card> deck;
 

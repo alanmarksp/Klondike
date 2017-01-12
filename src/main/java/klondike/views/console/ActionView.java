@@ -6,10 +6,13 @@ import klondike.controllers.ExitGameController;
 import klondike.controllers.FlipTableauCardController;
 import klondike.controllers.move.MoveController;
 import klondike.controllers.visitors.ActionControllerVisitor;
+import klondike.utils.IO;
 import klondike.utils.LimitedIntDialog;
 import klondike.views.console.models.GameView;
 
-public class ActionView extends BaseView implements ActionControllerVisitor {
+public class ActionView implements ActionControllerVisitor {
+
+    private IO io = new IO();
 
     private MoveView moveView;
 

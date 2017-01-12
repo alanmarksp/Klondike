@@ -1,10 +1,13 @@
 package klondike.views.console;
 
+import klondike.utils.IO;
 import klondike.utils.LimitedIntDialog;
 
-public class MenuView extends BaseView {
+public class MenuView {
 
     private static final int NUM_OPTIONS = 9;
+
+    private IO io = new IO();
 
     public void show() {
         io.writeln("---------------------------");

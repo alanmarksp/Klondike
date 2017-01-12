@@ -2,9 +2,11 @@ package klondike.views.console.models;
 
 import klondike.models.CardSuit;
 import klondike.models.Game;
-import klondike.views.console.BaseView;
+import klondike.utils.IO;
 
-public class GameView extends BaseView {
+public class GameView {
+
+    private IO io = new IO();
 
     private Game game;
 

@@ -1,11 +1,13 @@
 package klondike.views.console.models;
 
 import klondike.models.Card;
-import klondike.views.console.BaseView;
+import klondike.utils.IO;
 
-public class CardView extends BaseView {
+public class CardView {
 
     private final Card card;
+
+    private IO io = new IO();
 
     public CardView(Card card) {
         this.card = card;

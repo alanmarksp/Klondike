@@ -4,10 +4,13 @@ import klondike.controllers.Error;
 import klondike.controllers.move.*;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.CardSuit;
+import klondike.utils.IO;
 import klondike.utils.LimitedIntDialog;
 import klondike.views.console.models.GameView;
 
-public class MoveView extends BaseView implements MoveControllerVisitor {
+public class MoveView implements MoveControllerVisitor {
+
+    private IO io = new IO();
 
     public void interact(MoveController moveController) {
         moveController.accept(this);
