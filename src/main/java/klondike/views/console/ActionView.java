@@ -1,7 +1,9 @@
 package klondike.views.console;
 
-import klondike.controllers.*;
+import klondike.controllers.ActionController;
 import klondike.controllers.Error;
+import klondike.controllers.ExitGameController;
+import klondike.controllers.FlipTableauCardController;
 import klondike.controllers.move.MoveController;
 import klondike.controllers.visitors.ActionControllerVisitor;
 import klondike.utils.LimitedIntDialog;

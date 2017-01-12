@@ -1,14 +1,21 @@
 package klondike.controllers.local.move;
 
 import klondike.controllers.Error;
+import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Game;
 
-public class MoveFromDeckToWasteController extends MoveController {
+public class MoveFromDeckToWasteController extends MoveController implements
+        klondike.controllers.move.MoveFromDeckToWasteController {
 
     public MoveFromDeckToWasteController(Game game) {
         super(game);
         origin = game.getDeck();
         destination = game.getWaste();
+    }
+
+    @Override
+    public void accept(MoveControllerVisitor moveControllerVisitor) {
+        moveControllerVisitor.visit(this);
     }
 
     @Override

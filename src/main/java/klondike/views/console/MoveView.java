@@ -29,8 +29,8 @@ public class MoveView extends BaseView implements MoveControllerVisitor {
     }
 
     @Override
-    public void visit(MoveController moveController) {
-        move(moveController);
+    public void visit(MoveFromDeckToWasteController moveFromDeckToWasteController) {
+        move(moveFromDeckToWasteController);
     }
 
     @Override
@@ -60,6 +60,16 @@ public class MoveView extends BaseView implements MoveControllerVisitor {
         int destinationTableauStackIndex = new LimitedIntDialog("En que escalera?", numTableauStacks).read() - 1;
         moveFromTableauStackToTableauStackController.setDestination(destinationTableauStackIndex);
         move(moveFromTableauStackToTableauStackController);
+    }
+
+    @Override
+    public void visit(MoveFromWasteToDeckController moveFromWasteToDeckController) {
+        move(moveFromWasteToDeckController);
+    }
+
+    @Override
+    public void visit(MoveFromWasteToFoundationController moveFromWasteToFoundationController) {
+        move(moveFromWasteToFoundationController);
     }
 
     @Override

@@ -14,5 +14,7 @@ public interface MoveController extends ActionController {
 
     int getNumTableauStacks();
 
+    boolean isGameOver();
+
     void finishGame();
 }

@@ -29,7 +29,6 @@ public abstract class BaseController implements klondike.controllers.BaseControl
         return game;
     }
 
-    @Override
     public boolean isGameOver() {
         return game.isGameOver();
     }

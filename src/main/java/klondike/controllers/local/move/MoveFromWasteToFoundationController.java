@@ -1,6 +1,7 @@
 package klondike.controllers.local.move;
 
 import klondike.controllers.Error;
+import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
 import klondike.models.CardSuit;
 import klondike.models.CardValue;
@@ -12,6 +13,11 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
     public MoveFromWasteToFoundationController(Game game) {
         super(game);
         origin = game.getWaste();
+    }
+
+    @Override
+    public void accept(MoveControllerVisitor moveControllerVisitor) {
+        moveControllerVisitor.visit(this);
     }
 
     @Override

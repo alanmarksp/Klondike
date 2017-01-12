@@ -5,6 +5,4 @@ import klondike.models.Game;
 public interface BaseController {
 
     Game getGame();
-
-    boolean isGameOver();
 }

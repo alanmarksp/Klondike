@@ -25,11 +25,6 @@ public abstract class MoveController extends BaseController implements klondike.
     }
 
     @Override
-    public void accept(MoveControllerVisitor moveControllerVisitor) {
-        moveControllerVisitor.visit(this);
-    }
-
-    @Override
     public void move() {
         destination.push(origin.pop());
     }

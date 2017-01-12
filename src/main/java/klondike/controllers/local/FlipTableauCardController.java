@@ -4,7 +4,8 @@ import klondike.controllers.Error;
 import klondike.controllers.visitors.ActionControllerVisitor;
 import klondike.models.Game;
 
-public class FlipTableauCardController extends BaseController implements klondike.controllers.FlipTableauCardController {
+public class FlipTableauCardController extends BaseController implements
+        klondike.controllers.FlipTableauCardController {
 
     public FlipTableauCardController(Game game) {
         super(game);
