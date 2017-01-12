@@ -4,7 +4,7 @@ import klondike.controllers.visitors.ScenarioControllerVisitor;
 import klondike.models.Game;
 import klondike.models.State;
 
-public class ContinueController extends Controller implements klondike.controllers.ContinueController {
+public class ContinueController extends BaseController implements klondike.controllers.ContinueController {
 
     ContinueController(Game game) {
         super(game);

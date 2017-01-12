@@ -30,7 +30,7 @@ public class MoveFromWasteToFoundationController extends MoveController implemen
 
     @Override
     public void setDestination(CardSuit cardSuit) {
-        destination = getGame().getFoundation(cardSuit);
+        destination = getFoundation(cardSuit);
     }
 
     @Override

@@ -37,7 +37,7 @@ public class MoveFromWasteToTableauStackController extends MoveController implem
 
     @Override
     public void setDestination(int tableauStackIndex) {
-        destination = getGame().getTableauStack(tableauStackIndex);
+        destination = getTableauStack(tableauStackIndex);
     }
 
     @Override

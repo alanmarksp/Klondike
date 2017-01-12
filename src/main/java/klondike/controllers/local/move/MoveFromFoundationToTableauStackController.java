@@ -37,12 +37,12 @@ public class MoveFromFoundationToTableauStackController extends MoveController i
 
     @Override
     public void setOrigin(CardSuit cardSuit) {
-        origin = getGame().getFoundation(cardSuit);
+        origin = getFoundation(cardSuit);
     }
 
     @Override
     public void setDestination(int tableauStackIndex) {
-        destination = getGame().getTableauStack(tableauStackIndex);
+        destination = getTableauStack(tableauStackIndex);
     }
 
     @Override

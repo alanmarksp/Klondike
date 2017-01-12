@@ -1,6 +1,6 @@
 package klondike.controllers.local.move;
 
-import klondike.controllers.local.Controller;
+import klondike.controllers.local.BaseController;
 import klondike.controllers.visitors.ActionControllerVisitor;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
@@ -9,7 +9,7 @@ import klondike.models.State;
 
 import java.util.Stack;
 
-public abstract class MoveController extends Controller implements klondike.controllers.move.MoveController {
+public abstract class MoveController extends BaseController implements klondike.controllers.move.MoveController {
 
     protected Stack<Card> origin;
 
@@ -32,11 +32,6 @@ public abstract class MoveController extends Controller implements klondike.cont
     @Override
     public void move() {
         destination.push(origin.pop());
-    }
-
-    @Override
-    public boolean isGameOver() {
-        return getGame().isGameOver();
     }
 
     @Override

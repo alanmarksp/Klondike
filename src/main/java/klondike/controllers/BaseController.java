@@ -2,9 +2,9 @@ package klondike.controllers;
 
 import klondike.models.Game;
 
-public interface Controller {
+public interface BaseController {
 
     Game getGame();
 
-    int getGameMode();
+    boolean isGameOver();
 }

@@ -57,12 +57,12 @@ public class MoveFromTableauStackToTableauStackController extends MoveController
 
     @Override
     public void setOrigin(int tableauStackIndex) {
-        origin = getGame().getTableauStack(tableauStackIndex);
+        origin = getTableauStack(tableauStackIndex);
     }
 
     @Override
     public void setDestination(int tableauStackIndex) {
-        destination = getGame().getTableauStack(tableauStackIndex);
+        destination = getTableauStack(tableauStackIndex);
     }
 
     @Override

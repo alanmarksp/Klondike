@@ -13,7 +13,7 @@ public class MoveFromDeckToWasteController extends MoveController {
 
     @Override
     public void move() {
-        for (int i = 0; i < getGameMode() && !origin.isEmpty(); i++) {
+        for (int i = 0; i < Game.getGameMode() && !origin.isEmpty(); i++) {
             destination.push(origin.pop().flipUp());
         }
     }

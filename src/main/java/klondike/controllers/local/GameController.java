@@ -10,7 +10,7 @@ import klondike.utils.ClosedInterval;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameController extends Controller implements klondike.controllers.GameController {
+public class GameController extends BaseController implements klondike.controllers.GameController {
 
     private static final int NUM_ACTIONS = 9;
 

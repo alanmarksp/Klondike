@@ -4,7 +4,7 @@ import klondike.controllers.visitors.ScenarioControllerVisitor;
 import klondike.models.Game;
 import klondike.models.State;
 
-public class StartController extends Controller implements klondike.controllers.StartController {
+public class StartController extends BaseController implements klondike.controllers.StartController {
 
     public StartController(Game game) {
         super(game);

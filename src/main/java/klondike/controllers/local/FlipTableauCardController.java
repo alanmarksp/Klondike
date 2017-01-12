@@ -4,7 +4,7 @@ import klondike.controllers.Error;
 import klondike.controllers.visitors.ActionControllerVisitor;
 import klondike.models.Game;
 
-public class FlipTableauCardController extends Controller implements klondike.controllers.FlipTableauCardController {
+public class FlipTableauCardController extends BaseController implements klondike.controllers.FlipTableauCardController {
 
     public FlipTableauCardController(Game game) {
         super(game);
@@ -17,7 +17,7 @@ public class FlipTableauCardController extends Controller implements klondike.co
 
     @Override
     public Error validateFlip(int tableauStackIndex) {
-        if (getGame().getTableauStack(tableauStackIndex).peek().isFaceUp()) {
+        if (getTableauStack(tableauStackIndex).peek().isFaceUp()) {
             return Error.ALREADY_FACE_UP;
         }
         return null;
@@ -25,7 +25,7 @@ public class FlipTableauCardController extends Controller implements klondike.co
 
     @Override
     public void flip(int tableauStackIndex) {
-        getGame().getTableauStack(tableauStackIndex).peek().flipUp();
+        getTableauStack(tableauStackIndex).peek().flipUp();
     }
 
     @Override
