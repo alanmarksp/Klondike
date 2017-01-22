@@ -4,11 +4,10 @@ import klondike.controllers.Error;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
 import klondike.models.CardSuit;
-import klondike.models.CardValue;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromTableauStackToFoundationController extends MoveWithCardValidationController implements
+public class MoveFromTableauStackToFoundationController extends MoveWithFoundationAsDestination implements
         klondike.controllers.move.MoveFromTableauStackToFoundationController {
 
     private int tableauStackIndex;
@@ -30,20 +29,6 @@ public class MoveFromTableauStackToFoundationController extends MoveWithCardVali
     }
 
     @Override
-    public Error validateMove() {
-        if (origin.isEmpty()) {
-            return Error.EMPTY_STACK;
-        }
-        setDestination(getOriginCard().getSuit());
-        if (destination.isEmpty() && getOriginCard().getValue() != CardValue.ACE ||
-                !destination.isEmpty() && getOriginCard().getSuit() != getDestinationCard().getSuit() ||
-                !destination.isEmpty() && getDestinationCard().getValue().ordinal() != getOriginCard().getValue().ordinal() + 1) {
-            return Error.INVALID_MOVE;
-        }
-        return null;
-    }
-
-    @Override
     public Card pop() {
         return popFromTableauStack(tableauStackIndex);
     }
@@ -54,20 +39,13 @@ public class MoveFromTableauStackToFoundationController extends MoveWithCardVali
     }
 
     @Override
-    public Error validateOrigin() {
-        if (isTableauStackEmpty(tableauStackIndex)) {
-            return Error.EMPTY_STACK;
-        }
-        return null;
+    protected boolean isOriginEmpty() {
+        return isTableauStackEmpty(tableauStackIndex);
     }
 
     @Override
     public Error validateDestination(Card card) {
-        if (isFoundationEmpty(cardSuit) && card.getValue() != CardValue.ACE || !isFoundationEmpty(cardSuit) &&
-                card.getValue().ordinal() + 1 != getCardValueFromFoundation(cardSuit).ordinal()) {
-            return Error.INVALID_MOVE;
-        }
-        return null;
+        return super.validateDestination(card, cardSuit);
     }
 
     @Override
@@ -80,6 +58,16 @@ public class MoveFromTableauStackToFoundationController extends MoveWithCardVali
     public void setDestination(CardSuit cardSuit) {
         this.cardSuit = cardSuit;
         destination = getFoundation(cardSuit);
+    }
+
+    @Override
+    public Card getOriginCard() {
+        return peeKTableauStack(tableauStackIndex);
+    }
+
+    @Override
+    public Card getDestinationCard() {
+        return peekFoundation(cardSuit);
     }
 
     @Override

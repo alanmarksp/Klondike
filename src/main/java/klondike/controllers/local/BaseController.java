@@ -123,13 +123,20 @@ public abstract class BaseController implements PresenterController {
         return game.getWasteSize();
     }
 
-    protected int getFoundationSize(CardSuit cardSuit) {
-        return game.getFoundaiton(cardSuit);
+    protected int getTableauStackSize(int tableauStackIndex) {
+        return game.getTableauStackSize(tableauStackIndex);
     }
 
-    protected int getTableauStackSize(int tableauStackIndex) {
-        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
-        return game.getTableauStackSize(tableauStackIndex);
+    protected Card peekWaste() {
+        return game.peekWaste();
+    }
+
+    protected Card peekFoundation(CardSuit cardSuit) {
+        return game.peekFoundation(cardSuit);
+    }
+
+    protected Card peeKTableauStack(int tableauStackIndex) {
+        return game.peekTableauStack(tableauStackIndex);
     }
 
     @Override

@@ -12,10 +12,6 @@ public interface MoveController extends ActionController {
 
     void accept(ErrorView errorView);
 
-    void move();
-
-    Error validateMove();
-
     int getNumTableauStacks();
 
     boolean isGameOver();
@@ -25,4 +21,6 @@ public interface MoveController extends ActionController {
     Card pop();
 
     void push(Card card);
+
+    Error validateOrigin();
 }

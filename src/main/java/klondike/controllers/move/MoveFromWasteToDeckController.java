@@ -6,5 +6,7 @@ public interface MoveFromWasteToDeckController extends MoveController {
 
     Error validateOrigin();
 
+    Error validateDestination();
+
     int getOriginSize();
 }

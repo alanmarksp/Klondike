@@ -26,21 +26,6 @@ public class MoveFromWasteToDeckController extends MoveController implements
     }
 
     @Override
-    public void move() {
-        while (!origin.isEmpty()) {
-            destination.push(origin.pop().flipDown());
-        }
-    }
-
-    @Override
-    public Error validateMove() {
-        if (!destination.isEmpty()) {
-            return Error.NON_EMPTY_DECK;
-        }
-        return null;
-    }
-
-    @Override
     public Card pop() {
         return popFromWaste();
     }
@@ -51,9 +36,14 @@ public class MoveFromWasteToDeckController extends MoveController implements
     }
 
     @Override
-    public Error validateOrigin() {
-        if (isWasteEmpty()) {
-            return Error.EMPTY_STACK;
+    protected boolean isOriginEmpty() {
+        return isWasteEmpty();
+    }
+
+    @Override
+    public Error validateDestination() {
+        if (!isDeckEmpty()) {
+            return Error.NON_EMPTY_DECK;
         }
         return null;
     }

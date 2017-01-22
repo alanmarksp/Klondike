@@ -29,6 +29,14 @@ public class Game {
         setTable();
     }
 
+    public static int getNumTableauStacks() {
+        return NUM_TABLEAU_STACKS;
+    }
+
+    public static int getGameMode() {
+        return GAME_MODE;
+    }
+
     private void initDeck() {
         deck = new Stack<>();
         for (CardSuit cardSuit : CardSuit.values()) {
@@ -50,14 +58,6 @@ public class Game {
         for (int i = 0; i < NUM_TABLEAU_STACKS; i++) {
             tableau.add(new Stack<>());
         }
-    }
-
-    public static int getNumTableauStacks() {
-        return NUM_TABLEAU_STACKS;
-    }
-
-    public static int getGameMode() {
-        return GAME_MODE;
     }
 
     private void gatherCards() {
@@ -214,12 +214,7 @@ public class Game {
         return waste.size();
     }
 
-    public int getFoundaiton(CardSuit cardSuit) {
-        return foundations.get(cardSuit).size();
-    }
-
     public int getTableauStackSize(int tableauStackIndex) {
-        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
         return tableau.get(tableauStackIndex).size();
     }
 
@@ -229,5 +224,18 @@ public class Game {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public Card peekWaste() {
+        return waste.peek();
+    }
+
+    public Card peekFoundation(CardSuit cardSuit) {
+        return foundations.get(cardSuit).peek();
+    }
+
+    public Card peekTableauStack(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        return tableau.get(tableauStackIndex).peek();
     }
 }

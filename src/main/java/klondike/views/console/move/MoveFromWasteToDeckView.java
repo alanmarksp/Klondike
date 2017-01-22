@@ -14,6 +14,11 @@ public class MoveFromWasteToDeckView {
             new ErrorView(error).interact(moveFromWasteToDeckController);
             return;
         }
+        error = moveFromWasteToDeckController.validateDestination();
+        if (error != null) {
+            new ErrorView(error).interact(moveFromWasteToDeckController);
+            return;
+        }
         while (moveFromWasteToDeckController.getOriginSize() > 0) {
             moveFromWasteToDeckController.push(moveFromWasteToDeckController.pop().flipDown());
         }

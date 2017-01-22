@@ -95,8 +95,14 @@ public class ErrorView {
     }
 
     public void visit(MoveFromWasteToDeckController moveFromWasteToDeckController) {
-        assert error == Error.EMPTY_STACK;
-        showError("El descarte esta vacío");
+        switch (error) {
+            case EMPTY_STACK:
+                showError("El descarte esta vacío");
+                break;
+            case NON_EMPTY_DECK:
+                showError("La baraja no esta vacía");
+                break;
+        }
     }
 
     public void visit(MoveFromWasteToFoundationController moveFromWasteToFoundationController) {

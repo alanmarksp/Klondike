@@ -4,11 +4,10 @@ import klondike.controllers.Error;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
 import klondike.models.CardSuit;
-import klondike.models.CardValue;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromFoundationToTableauStackController extends MoveWithCardValidationController implements
+public class MoveFromFoundationToTableauStackController extends MoveWithTableauStackAsDestination implements
         klondike.controllers.move.MoveFromFoundationToTableauStackController {
 
     private CardSuit cardSuit;
@@ -30,22 +29,6 @@ public class MoveFromFoundationToTableauStackController extends MoveWithCardVali
     }
 
     @Override
-    public Error validateMove() {
-        if (origin.isEmpty()) {
-            return Error.EMPTY_STACK;
-        }
-        if (!destination.isEmpty() && !getDestinationCard().isFaceUp()) {
-            return Error.DESTINATION_CARD_FACE_DOWN;
-        }
-        if (destination.isEmpty() && getOriginCard().getValue() != CardValue.KING ||
-                !destination.isEmpty() && getOriginCard().getSuit().isSameColor(getDestinationCard().getSuit()) ||
-                !destination.isEmpty() && getDestinationCard().getValue().ordinal() != getOriginCard().getValue().ordinal() + 1) {
-            return Error.INVALID_MOVE;
-        }
-        return null;
-    }
-
-    @Override
     public Card pop() {
         return popFromFoundation(cardSuit);
     }
@@ -61,24 +44,13 @@ public class MoveFromFoundationToTableauStackController extends MoveWithCardVali
     }
 
     @Override
-    public Error validateOrigin() {
-        if (isFoundationEmpty(cardSuit)) {
-            return Error.EMPTY_STACK;
-        }
-        return null;
+    public Error validateDestination(Card card) {
+        return super.validateDestination(card, tableauStackIndex);
     }
 
     @Override
-    public Error validateDestination(Card card) {
-        if (!isTableauStackEmpty(tableauStackIndex) && !isCardOnTabelauStackFacedUp(tableauStackIndex)) {
-            return Error.DESTINATION_CARD_FACE_DOWN;
-        }
-        if (isTableauStackEmpty(tableauStackIndex) && card.getValue() != CardValue.KING || !destination.isEmpty() &&
-                card.getSuit().isSameColor(getCardSuitFromTableauStack(tableauStackIndex)) || !destination.isEmpty() &&
-                card.getValue().ordinal() + 1 != getCardValueFromTableauStack(tableauStackIndex).ordinal()) {
-            return Error.INVALID_MOVE;
-        }
-        return null;
+    protected boolean isOriginEmpty() {
+        return isFoundationEmpty(cardSuit);
     }
 
     @Override
@@ -91,6 +63,16 @@ public class MoveFromFoundationToTableauStackController extends MoveWithCardVali
     public void setDestination(int tableauStackIndex) {
         this.tableauStackIndex = tableauStackIndex;
         destination = getTableauStack(tableauStackIndex);
+    }
+
+    @Override
+    public Card getOriginCard() {
+        return peekFoundation(cardSuit);
+    }
+
+    @Override
+    public Card getDestinationCard() {
+        return peeKTableauStack(tableauStackIndex);
     }
 
     @Override
