@@ -32,9 +32,4 @@ public abstract class MoveController extends BaseController implements klondike.
     public void finishGame() {
         this.setState(State.FINAL);
     }
-
-    @Override
-    public int getNumTableauStacks() {
-        return Game.getNumTableauStacks();
-    }
 }

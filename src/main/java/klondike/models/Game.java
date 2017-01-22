@@ -1,5 +1,7 @@
 package klondike.models;
 
+import klondike.utils.ClosedInterval;
+
 import java.util.*;
 
 public class Game {
@@ -20,22 +22,34 @@ public class Game {
 
     public Game() {
         state = State.INITIAL;
+        waste = new Stack<>();
+        initDeck();
+        initFoundations();
+        initTableau();
+        setTable();
+    }
+
+    private void initDeck() {
         deck = new Stack<>();
         for (CardSuit cardSuit : CardSuit.values()) {
             for (CardValue value : CardValue.values()) {
                 deck.push(new Card(value, cardSuit));
             }
         }
-        waste = new Stack<>();
+    }
+
+    private void initFoundations() {
         foundations = new HashMap<>();
         for (CardSuit value : CardSuit.values()) {
             foundations.put(value, new Stack<>());
         }
+    }
+
+    private void initTableau() {
         tableau = new ArrayList<>();
         for (int i = 0; i < NUM_TABLEAU_STACKS; i++) {
             tableau.add(new Stack<>());
         }
-        setTable();
     }
 
     public static int getNumTableauStacks() {
@@ -92,11 +106,71 @@ public class Game {
     }
 
     public Stack<Card> getFoundation(CardSuit cardSuit) {
+        assert cardSuit != null;
         return foundations.get(cardSuit);
     }
 
     public Stack<Card> getTableauStack(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
         return tableau.get(tableauStackIndex);
+    }
+
+    private Card pop(Stack<Card> stack) {
+        assert stack != null;
+        if (!stack.isEmpty()) {
+            return stack.pop();
+        }
+        return null;
+    }
+
+    public Card popFromDeck() {
+        return pop(deck);
+    }
+
+    public Card popFromWaste() {
+        return pop(waste);
+    }
+
+    public Card popFromFoundation(CardSuit cardSuit) {
+        assert cardSuit != null;
+        return pop(foundations.get(cardSuit));
+    }
+
+    public Card popFromTableauStack(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        return pop(tableau.get(tableauStackIndex));
+    }
+
+    public void pushToDeck(Card card) {
+        assert card != null;
+        deck.push(card);
+    }
+
+    public void pushToWaste(Card card) {
+        assert card != null;
+        waste.push(card);
+    }
+
+    public void pushToFoundation(Card card, CardSuit cardSuit) {
+        assert card != null;
+        assert cardSuit != null;
+        foundations.get(cardSuit).push(card);
+    }
+
+    public void pushToTableauStack(Card card, int tableauStackIndex) {
+        assert card != null;
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        tableau.get(tableauStackIndex).push(card);
+    }
+
+    public boolean isCardOnTabelauStackFacedUp(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        return tableau.get(tableauStackIndex).peek().isFaceUp();
+    }
+
+    public void flipUp(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        tableau.get(tableauStackIndex).peek().flipUp();
     }
 
     public State getState() {

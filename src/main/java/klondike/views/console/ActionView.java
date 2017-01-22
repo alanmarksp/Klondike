@@ -36,9 +36,10 @@ public class ActionView implements ActionControllerVisitor {
         Error error = flipTableauCardController.validateFlip(tableauStackIndex);
         if (error == null) {
             flipTableauCardController.flip(tableauStackIndex);
-            new GameView(flipTableauCardController.getGame()).show();
+            new GameView(flipTableauCardController).show();
             new MenuView().show();
         } else {
+            // TODO Mostrar error
             io.writeln(error.toString());
         }
     }

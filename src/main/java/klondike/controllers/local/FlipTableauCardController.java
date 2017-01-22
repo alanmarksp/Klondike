@@ -18,7 +18,7 @@ public class FlipTableauCardController extends BaseController implements
 
     @Override
     public Error validateFlip(int tableauStackIndex) {
-        if (getTableauStack(tableauStackIndex).peek().isFaceUp()) {
+        if (isCardOnTabelauStackFacedUp(tableauStackIndex)) {
             return Error.ALREADY_FACE_UP;
         }
         return null;
@@ -26,7 +26,7 @@ public class FlipTableauCardController extends BaseController implements
 
     @Override
     public void flip(int tableauStackIndex) {
-        getTableauStack(tableauStackIndex).peek().flipUp();
+        flipUp(tableauStackIndex);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class MoveView implements MoveControllerVisitor {
         Error error = moveController.validateMove();
         if (error == null) {
             moveController.move();
-            new GameView(moveController.getGame()).show();
+            new GameView(moveController).show();
             finishOrContinue(moveController);
         } else {
             new ErrorView(error).interact(moveController);

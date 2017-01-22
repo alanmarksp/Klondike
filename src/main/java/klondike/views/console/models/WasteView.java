@@ -1,38 +1,31 @@
 package klondike.views.console.models;
 
+import klondike.controllers.PresenterController;
 import klondike.models.Card;
-import klondike.utils.IO;
 
 import java.util.Stack;
 
-public class WasteView {
-
-    private IO io = new IO();
-
-    private Stack<Card> waste;
+public class WasteView extends StackView {
 
     private int gameMode;
 
-    public WasteView(Stack<Card> waste, int gameMode) {
-        this.waste = waste;
-        this.gameMode = gameMode;
+    public WasteView(PresenterController presenterController) {
+        setCards(presenterController.getWaste());
+        this.gameMode = presenterController.getGameMode();
+        setTitle("Descarte: ");
     }
 
-    public void show() {
-        io.write("Descarte: ");
-        if (waste.isEmpty()) {
-            io.writeln("<vacío>");
-        } else {
-            Stack<Card> cards = new Stack<>();
-            while (!waste.isEmpty() && cards.size() < gameMode) {
-                cards.push(waste.pop());
-            }
-            while (!cards.isEmpty()) {
-                Card card = cards.pop();
-                new CardView(card).show();
-                waste.push(card);
-            }
-            io.writeln();
+    @Override
+    protected void showStack() {
+        Stack<Card> waste = getCards();
+        Stack<Card> tempCardsStack = new Stack<>();
+        while (!waste.isEmpty() && tempCardsStack.size() < gameMode) {
+            tempCardsStack.push(waste.pop());
+        }
+        while (!tempCardsStack.isEmpty()) {
+            Card card = tempCardsStack.pop();
+            showCard(card);
+            waste.push(card);
         }
     }
 }

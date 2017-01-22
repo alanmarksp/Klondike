@@ -1,28 +1,28 @@
 package klondike.views.console.models;
 
+import klondike.controllers.PresenterController;
 import klondike.models.CardSuit;
-import klondike.models.Game;
 import klondike.utils.IO;
 
 public class GameView {
 
     private IO io = new IO();
 
-    private Game game;
+    private PresenterController presenterController;
 
-    public GameView(Game game) {
-        this.game = game;
+    public GameView(PresenterController presenterController) {
+        this.presenterController = presenterController;
     }
 
     public void show() {
         io.writeln("===========================");
-        new DeckView(game.getDeck()).show();
-        new WasteView(game.getWaste(), Game.getGameMode()).show();
+        new DeckView(presenterController).show();
+        new WasteView(presenterController).show();
         for (CardSuit cardSuit : CardSuit.values()) {
-            new Foundation(game.getFoundation(cardSuit), cardSuit).show();
+            new FoundationView(presenterController, cardSuit).show();
         }
-        for (int i = 0; i < Game.getNumTableauStacks(); i++) {
-            new TableauStackView(game.getTableauStack(i), i).show();
+        for (int i = 0; i < presenterController.getNumTableauStacks(); i++) {
+            new TableauStackView(presenterController, i).show();
         }
     }
 }

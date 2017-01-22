@@ -18,7 +18,6 @@ public class GameController extends BaseController implements klondike.controlle
     public GameController(Game game) {
         super(game);
         actionControllers = new ArrayList<>();
-
         actionControllers.add(new MoveFromDeckToWasteController(game));
         actionControllers.add(new MoveFromWasteToDeckController(game));
         actionControllers.add(new MoveFromWasteToFoundationController(game));

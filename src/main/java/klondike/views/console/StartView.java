@@ -6,7 +6,7 @@ import klondike.views.console.models.GameView;
 public class StartView {
 
     public void interact(StartController startController) {
-        new GameView(startController.getGame()).show();
+        new GameView(startController).show();
         new MenuView().show();
         startController.start();
     }
