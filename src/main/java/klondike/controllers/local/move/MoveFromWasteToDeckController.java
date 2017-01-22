@@ -2,6 +2,7 @@ package klondike.controllers.local.move;
 
 import klondike.controllers.Error;
 import klondike.controllers.visitors.MoveControllerVisitor;
+import klondike.models.Card;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
@@ -37,5 +38,28 @@ public class MoveFromWasteToDeckController extends MoveController implements
             return Error.NON_EMPTY_DECK;
         }
         return null;
+    }
+
+    @Override
+    public Card pop() {
+        return popFromWaste();
+    }
+
+    @Override
+    public void push(Card card) {
+        pushToDeck(card);
+    }
+
+    @Override
+    public Error validateOrigin() {
+        if (isWasteEmpty()) {
+            return Error.EMPTY_STACK;
+        }
+        return null;
+    }
+
+    @Override
+    public int getOriginSize() {
+        return getWasteSize();
     }
 }

@@ -1,9 +1,14 @@
 package klondike.controllers.move;
 
+import klondike.controllers.Error;
 import klondike.models.Card;
 import klondike.models.CardSuit;
 
 public interface MoveFromWasteToFoundationController extends MoveController {
+
+    Error validateOrigin();
+
+    Error validateDestination(Card card);
 
     void setDestination(CardSuit cardSuit);
 
@@ -11,5 +16,5 @@ public interface MoveFromWasteToFoundationController extends MoveController {
 
     Card getDestinationCard();
 
-    CardSuit getCardSuit();
+    void pushBack(Card card);
 }

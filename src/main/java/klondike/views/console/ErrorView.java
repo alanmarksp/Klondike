@@ -85,7 +85,7 @@ public class ErrorView {
                 showError("No se puede mover sobre una carta cubierta");
                 break;
             case INVALID_NUM_CARDS_TO_MOVE:
-                showError("No se pueden mover " + moveFromTableauStackToTableauStackController.getNumTableauStacks()
+                showError("No se pueden mover " + moveFromTableauStackToTableauStackController.getNumCardsToMove()
                         + " cartas desde la escalera " + moveFromTableauStackToTableauStackController.getTableauStackIndex());
                 break;
             case ORIGIN_CARD_FACE_DOWN:
@@ -95,8 +95,8 @@ public class ErrorView {
     }
 
     public void visit(MoveFromWasteToDeckController moveFromWasteToDeckController) {
-        assert error == Error.NON_EMPTY_DECK;
-        showError("La baraja no está vacía");
+        assert error == Error.EMPTY_STACK;
+        showError("El descarte esta vacío");
     }
 
     public void visit(MoveFromWasteToFoundationController moveFromWasteToFoundationController) {

@@ -13,6 +13,8 @@ public class MoveFromFoundationToTableauStackController extends MoveWithCardVali
 
     private CardSuit cardSuit;
 
+    private int tableauStackIndex;
+
     public MoveFromFoundationToTableauStackController(Game game) {
         super(game);
     }
@@ -44,6 +46,42 @@ public class MoveFromFoundationToTableauStackController extends MoveWithCardVali
     }
 
     @Override
+    public Card pop() {
+        return popFromFoundation(cardSuit);
+    }
+
+    @Override
+    public void push(Card card) {
+        pushToTableauStack(card, tableauStackIndex);
+    }
+
+    @Override
+    public void pushBack(Card card) {
+        pushToFoundation(card, cardSuit);
+    }
+
+    @Override
+    public Error validateOrigin() {
+        if (isFoundationEmpty(cardSuit)) {
+            return Error.EMPTY_STACK;
+        }
+        return null;
+    }
+
+    @Override
+    public Error validateDestination(Card card) {
+        if (!isTableauStackEmpty(tableauStackIndex) && !isCardOnTabelauStackFacedUp(tableauStackIndex)) {
+            return Error.DESTINATION_CARD_FACE_DOWN;
+        }
+        if (isTableauStackEmpty(tableauStackIndex) && card.getValue() != CardValue.KING || !destination.isEmpty() &&
+                card.getSuit().isSameColor(getCardSuitFromTableauStack(tableauStackIndex)) || !destination.isEmpty() &&
+                card.getValue().ordinal() + 1 != getCardValueFromTableauStack(tableauStackIndex).ordinal()) {
+            return Error.INVALID_MOVE;
+        }
+        return null;
+    }
+
+    @Override
     public void setOrigin(CardSuit cardSuit) {
         this.cardSuit = cardSuit;
         origin = getFoundation(cardSuit);
@@ -51,6 +89,7 @@ public class MoveFromFoundationToTableauStackController extends MoveWithCardVali
 
     @Override
     public void setDestination(int tableauStackIndex) {
+        this.tableauStackIndex = tableauStackIndex;
         destination = getTableauStack(tableauStackIndex);
     }
 

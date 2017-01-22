@@ -43,13 +43,40 @@ public class MoveFromWasteToFoundationController extends MoveWithCardValidationC
     }
 
     @Override
+    public Card pop() {
+        return popFromWaste();
+    }
+
+    @Override
+    public void push(Card card) {
+        pushToFoundation(card, cardSuit);
+    }
+
+    @Override
+    public Error validateOrigin() {
+        if (isWasteEmpty()) {
+            return Error.EMPTY_STACK;
+        }
+        return null;
+    }
+
+    @Override
+    public Error validateDestination(Card card) {
+        if (isFoundationEmpty(cardSuit) && card.getValue() != CardValue.ACE || !isFoundationEmpty(cardSuit) &&
+                card.getValue().ordinal() + 1 != getCardValueFromFoundation(cardSuit).ordinal()) {
+            return Error.INVALID_MOVE;
+        }
+        return null;
+    }
+
+    @Override
     public void setDestination(CardSuit cardSuit) {
         this.cardSuit = cardSuit;
         destination = getFoundation(cardSuit);
     }
 
     @Override
-    public CardSuit getCardSuit() {
-        return cardSuit;
+    public void pushBack(Card card) {
+        pushToWaste(card);
     }
 }

@@ -9,6 +9,7 @@ import klondike.controllers.visitors.ActionControllerVisitor;
 import klondike.utils.IO;
 import klondike.utils.LimitedIntDialog;
 import klondike.views.console.models.GameView;
+import klondike.views.console.move.MoveView;
 
 public class ActionView implements ActionControllerVisitor {
 

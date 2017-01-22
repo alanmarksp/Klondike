@@ -52,6 +52,14 @@ public class MoveFromDeckToWasteController extends MoveController implements
 
     @Override
     public Error validateOrigin() {
+        if (isDeckEmpty()) {
+            return Error.EMPTY_STACK;
+        }
         return null;
+    }
+
+    @Override
+    public int getOriginSize() {
+        return getDeckSize();
     }
 }

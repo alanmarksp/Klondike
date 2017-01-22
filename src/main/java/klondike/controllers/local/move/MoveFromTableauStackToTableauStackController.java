@@ -14,7 +14,9 @@ public class MoveFromTableauStackToTableauStackController extends MoveWithCardVa
 
     private int numCardsToMove;
 
-    private int tableauStackIndex;
+    private int originTableauStackIndex;
+
+    private int destinaitonTableauStackIndex;
 
     public MoveFromTableauStackToTableauStackController(Game game) {
         super(game);
@@ -64,13 +66,60 @@ public class MoveFromTableauStackToTableauStackController extends MoveWithCardVa
     }
 
     @Override
+    public Card pop() {
+        return popFromTableauStack(originTableauStackIndex);
+    }
+
+    @Override
+    public void push(Card card) {
+        pushToTableauStack(card, destinaitonTableauStackIndex);
+    }
+
+    @Override
+    public Error validateOrigin() {
+        if (isTableauStackEmpty(originTableauStackIndex)) {
+            return Error.EMPTY_STACK;
+        }
+        if (getTableauStackSize(originTableauStackIndex) < numCardsToMove) {
+            return Error.INVALID_NUM_CARDS_TO_MOVE;
+        }
+        return null;
+    }
+
+    @Override
+    public Error validateDestination(Card card) {
+        if (!card.isFaceUp()) {
+            return Error.ORIGIN_CARD_FACE_DOWN;
+        }
+        if (!isTableauStackEmpty(destinaitonTableauStackIndex) &&
+                !isCardOnTabelauStackFacedUp(destinaitonTableauStackIndex)) {
+            return Error.DESTINATION_CARD_FACE_DOWN;
+        }
+        if (isTableauStackEmpty(destinaitonTableauStackIndex) && card.getValue() != CardValue.KING ||
+                !isTableauStackEmpty(destinaitonTableauStackIndex) &&
+                        card.getSuit().isSameColor(getCardSuitFromTableauStack(destinaitonTableauStackIndex)) ||
+                !isTableauStackEmpty(destinaitonTableauStackIndex) &&
+                        card.getValue().ordinal() + 1 != getCardValueFromTableauStack(destinaitonTableauStackIndex).ordinal()) {
+            return Error.INVALID_MOVE;
+        }
+        return null;
+    }
+
+    @Override
     public void setOrigin(int tableauStackIndex) {
+        originTableauStackIndex = tableauStackIndex;
         origin = getTableauStack(tableauStackIndex);
     }
 
     @Override
     public void setDestination(int tableauStackIndex) {
+        destinaitonTableauStackIndex = tableauStackIndex;
         destination = getTableauStack(tableauStackIndex);
+    }
+
+    @Override
+    public int getNumCardsToMove() {
+        return numCardsToMove;
     }
 
     @Override
@@ -80,6 +129,11 @@ public class MoveFromTableauStackToTableauStackController extends MoveWithCardVa
 
     @Override
     public int getTableauStackIndex() {
-        return tableauStackIndex;
+        return originTableauStackIndex;
+    }
+
+    @Override
+    public void pushBack(Card card) {
+        pushToTableauStack(card, originTableauStackIndex);
     }
 }

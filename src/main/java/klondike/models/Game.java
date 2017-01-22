@@ -163,6 +163,24 @@ public class Game {
         tableau.get(tableauStackIndex).push(card);
     }
 
+    public boolean isDeckEmpty() {
+        return deck.isEmpty();
+    }
+
+    public boolean isWasteEmpty() {
+        return waste.isEmpty();
+    }
+
+    public boolean isFoundationEmpty(CardSuit cardSuit) {
+        assert cardSuit != null;
+        return foundations.get(cardSuit).isEmpty();
+    }
+
+    public boolean isTableauStackEmpty(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        return tableau.get(tableauStackIndex).isEmpty();
+    }
+
     public boolean isCardOnTabelauStackFacedUp(int tableauStackIndex) {
         assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
         return tableau.get(tableauStackIndex).peek().isFaceUp();
@@ -171,6 +189,38 @@ public class Game {
     public void flipUp(int tableauStackIndex) {
         assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
         tableau.get(tableauStackIndex).peek().flipUp();
+    }
+
+    public CardValue getCardValueFromFoundation(CardSuit cardSuit) {
+        assert cardSuit != null;
+        return foundations.get(cardSuit).peek().getValue();
+    }
+
+    public CardValue getCardValueFromTableauStack(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        return tableau.get(tableauStackIndex).peek().getValue();
+    }
+
+    public CardSuit getCardSuitFromTableauStack(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        return tableau.get(tableauStackIndex).peek().getSuit();
+    }
+
+    public int getDeckSize() {
+        return deck.size();
+    }
+
+    public int getWasteSize() {
+        return waste.size();
+    }
+
+    public int getFoundaiton(CardSuit cardSuit) {
+        return foundations.get(cardSuit).size();
+    }
+
+    public int getTableauStackSize(int tableauStackIndex) {
+        assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
+        return tableau.get(tableauStackIndex).size();
     }
 
     public State getState() {

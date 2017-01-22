@@ -18,12 +18,12 @@ public class WasteView extends StackView {
     @Override
     protected void showStack() {
         Stack<Card> waste = getCards();
-        Stack<Card> tempCardsStack = new Stack<>();
-        while (!waste.isEmpty() && tempCardsStack.size() < gameMode) {
-            tempCardsStack.push(waste.pop());
+        Stack<Card> tempCardStack = new Stack<>();
+        while (!waste.isEmpty() && tempCardStack.size() < gameMode) {
+            tempCardStack.push(waste.pop());
         }
-        while (!tempCardsStack.isEmpty()) {
-            Card card = tempCardsStack.pop();
+        while (!tempCardStack.isEmpty()) {
+            Card card = tempCardStack.pop();
             showCard(card);
             waste.push(card);
         }

@@ -1,10 +1,7 @@
 package klondike.controllers.local;
 
 import klondike.controllers.PresenterController;
-import klondike.models.Card;
-import klondike.models.CardSuit;
-import klondike.models.Game;
-import klondike.models.State;
+import klondike.models.*;
 import klondike.utils.ClosedInterval;
 
 import java.util.Stack;
@@ -45,44 +42,94 @@ public abstract class BaseController implements PresenterController {
         game.flipUp(tableauStackIndex);
     }
 
-    public Card popFromDeck() {
+    protected Card popFromDeck() {
         return game.popFromDeck();
     }
 
-    public Card popFromWaste() {
+    protected Card popFromWaste() {
         return game.popFromWaste();
     }
 
-    public Card popFromFoundation(CardSuit cardSuit) {
+    protected Card popFromFoundation(CardSuit cardSuit) {
         assert cardSuit != null;
         return game.popFromFoundation(cardSuit);
     }
 
-    public Card popFromTableauStack(int tableauStackIndex) {
+    protected Card popFromTableauStack(int tableauStackIndex) {
         assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         return game.popFromTableauStack(tableauStackIndex);
     }
 
-    public void pushToDeck(Card card) {
+    protected void pushToDeck(Card card) {
         assert card != null;
         game.pushToDeck(card);
     }
 
-    public void pushToWaste(Card card) {
+    protected void pushToWaste(Card card) {
         assert card != null;
         game.pushToWaste(card);
     }
 
-    public void pushToFoundation(Card card, CardSuit cardSuit) {
+    protected void pushToFoundation(Card card, CardSuit cardSuit) {
         assert card != null;
         assert cardSuit != null;
         game.pushToFoundation(card, cardSuit);
     }
 
-    public void pushToTableauStack(Card card, int tableauStackIndex) {
+    protected void pushToTableauStack(Card card, int tableauStackIndex) {
         assert card != null;
         assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         game.pushToTableauStack(card, tableauStackIndex);
+    }
+
+    protected boolean isDeckEmpty() {
+        return game.isDeckEmpty();
+    }
+
+    protected boolean isWasteEmpty() {
+        return game.isWasteEmpty();
+    }
+
+    protected boolean isFoundationEmpty(CardSuit cardSuit) {
+        assert cardSuit != null;
+        return game.isFoundationEmpty(cardSuit);
+    }
+
+    protected boolean isTableauStackEmpty(int tableauStackIndex) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
+        return game.isTableauStackEmpty(tableauStackIndex);
+    }
+
+    protected CardValue getCardValueFromFoundation(CardSuit cardSuit) {
+        assert cardSuit != null;
+        return game.getCardValueFromFoundation(cardSuit);
+    }
+
+    protected CardValue getCardValueFromTableauStack(int tableauStackIndex) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
+        return game.getCardValueFromTableauStack(tableauStackIndex);
+    }
+
+    protected CardSuit getCardSuitFromTableauStack(int tableauStackIndex) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
+        return game.getCardSuitFromTableauStack(tableauStackIndex);
+    }
+
+    protected int getDeckSize() {
+        return game.getDeckSize();
+    }
+
+    protected int getWasteSize() {
+        return game.getWasteSize();
+    }
+
+    protected int getFoundationSize(CardSuit cardSuit) {
+        return game.getFoundaiton(cardSuit);
+    }
+
+    protected int getTableauStackSize(int tableauStackIndex) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
+        return game.getTableauStackSize(tableauStackIndex);
     }
 
     @Override
