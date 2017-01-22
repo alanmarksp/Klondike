@@ -227,15 +227,24 @@ public class Game {
     }
 
     public Card peekWaste() {
-        return waste.peek();
+        if (!waste.isEmpty()) {
+            return waste.peek();
+        }
+        return null;
     }
 
     public Card peekFoundation(CardSuit cardSuit) {
-        return foundations.get(cardSuit).peek();
+        if (!foundations.get(cardSuit).isEmpty()) {
+            return foundations.get(cardSuit).peek();
+        }
+        return null;
     }
 
     public Card peekTableauStack(int tableauStackIndex) {
         assert new ClosedInterval(0, NUM_TABLEAU_STACKS - 1).includes(tableauStackIndex);
-        return tableau.get(tableauStackIndex).peek();
+        if (!tableau.get(tableauStackIndex).isEmpty()) {
+            return tableau.get(tableauStackIndex).peek();
+        }
+        return null;
     }
 }

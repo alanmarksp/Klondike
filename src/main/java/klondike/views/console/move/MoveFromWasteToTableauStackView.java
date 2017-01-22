@@ -1,36 +1,13 @@
 package klondike.views.console.move;
 
-import klondike.controllers.Error;
 import klondike.controllers.move.MoveFromWasteToTableauStackController;
-import klondike.models.Card;
 import klondike.utils.LimitedIntDialog;
-import klondike.views.console.ErrorView;
-import klondike.views.console.MenuView;
-import klondike.views.console.models.GameView;
 
-public class MoveFromWasteToTableauStackView {
+public class MoveFromWasteToTableauStackView extends MoveWithTableauStackAsDestination {
 
     public void interact(MoveFromWasteToTableauStackController moveFromWasteToTableauStackController) {
         prepareController(moveFromWasteToTableauStackController);
-        Error error = moveFromWasteToTableauStackController.validateOrigin();
-        if (error != null) {
-            new ErrorView(error).interact(moveFromWasteToTableauStackController);
-            return;
-        }
-        Card card = moveFromWasteToTableauStackController.pop();
-        error = moveFromWasteToTableauStackController.validateDestination(card);
-        if (error != null) {
-            moveFromWasteToTableauStackController.pushBack(card);
-            new ErrorView(error).interact(moveFromWasteToTableauStackController);
-            return;
-        }
-        moveFromWasteToTableauStackController.push(card);
-        new GameView(moveFromWasteToTableauStackController).show();
-        if (moveFromWasteToTableauStackController.isGameOver()) {
-            moveFromWasteToTableauStackController.finishGame();
-        } else {
-            new MenuView().show();
-        }
+        super.interact(moveFromWasteToTableauStackController);
     }
 
     private void prepareController(MoveFromWasteToTableauStackController moveFromWasteToTableauStackController) {

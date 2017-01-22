@@ -7,7 +7,7 @@ import klondike.models.CardSuit;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromWasteToFoundationController extends MoveWithFoundationAsDestination implements
+public class MoveFromWasteToFoundationController extends MoveWithFoundationAsDestinationController implements
         klondike.controllers.move.MoveFromWasteToFoundationController {
 
     private CardSuit cardSuit;

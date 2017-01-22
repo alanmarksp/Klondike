@@ -8,7 +8,7 @@ import klondike.views.console.ErrorView;
 
 import java.util.Stack;
 
-public class MoveFromTableauStackToTableauStackController extends MoveWithTableauStackAsDestination implements
+public class MoveFromTableauStackToTableauStackController extends MoveWithTableauStackAsDestinationController implements
         klondike.controllers.move.MoveFromTableauStackToTableauStackController {
 
     private int numCardsToMove;

@@ -6,7 +6,7 @@ import klondike.models.Card;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromWasteToTableauStackController extends MoveWithTableauStackAsDestination implements
+public class MoveFromWasteToTableauStackController extends MoveWithTableauStackAsDestinationController implements
         klondike.controllers.move.MoveFromWasteToTableauStackController {
 
     private int tableauStackIndex;

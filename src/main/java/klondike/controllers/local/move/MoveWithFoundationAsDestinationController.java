@@ -6,9 +6,10 @@ import klondike.models.CardSuit;
 import klondike.models.CardValue;
 import klondike.models.Game;
 
-public abstract class MoveWithFoundationAsDestination extends MoveController {
+public abstract class MoveWithFoundationAsDestinationController extends MoveController implements
+        klondike.controllers.move.MoveWithFoundationAsDestinationController {
 
-    MoveWithFoundationAsDestination(Game game) {
+    MoveWithFoundationAsDestinationController(Game game) {
         super(game);
     }
 

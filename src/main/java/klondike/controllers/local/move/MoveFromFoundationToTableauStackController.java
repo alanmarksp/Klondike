@@ -7,7 +7,7 @@ import klondike.models.CardSuit;
 import klondike.models.Game;
 import klondike.views.console.ErrorView;
 
-public class MoveFromFoundationToTableauStackController extends MoveWithTableauStackAsDestination implements
+public class MoveFromFoundationToTableauStackController extends MoveWithTableauStackAsDestinationController implements
         klondike.controllers.move.MoveFromFoundationToTableauStackController {
 
     private CardSuit cardSuit;

@@ -3,11 +3,9 @@ package klondike.controllers.move;
 import klondike.controllers.Error;
 import klondike.models.Card;
 
-public interface MoveFromTableauStackToTableauStackController extends MoveController {
+public interface MoveFromTableauStackToTableauStackController extends MoveWithDestinationValidationController {
 
     Error validateOrigin();
-
-    Error validateDestination(Card card);
 
     void setOrigin(int tableauStackIndex);
 

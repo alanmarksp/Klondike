@@ -2,15 +2,10 @@ package klondike.controllers.move;
 
 import klondike.controllers.Error;
 import klondike.models.Card;
-import klondike.models.CardSuit;
 
-public interface MoveFromWasteToFoundationController extends MoveController {
+public interface MoveFromWasteToFoundationController extends MoveWithFoundationAsDestinationController {
 
     Error validateOrigin();
-
-    Error validateDestination(Card card);
-
-    void setDestination(CardSuit cardSuit);
 
     Card getOriginCard();
 

@@ -5,9 +5,9 @@ import klondike.models.Card;
 import klondike.models.CardValue;
 import klondike.models.Game;
 
-public abstract class MoveWithTableauStackAsDestination extends MoveController {
+public abstract class MoveWithTableauStackAsDestinationController extends MoveController {
 
-    MoveWithTableauStackAsDestination(Game game) {
+    MoveWithTableauStackAsDestinationController(Game game) {
         super(game);
     }
 
