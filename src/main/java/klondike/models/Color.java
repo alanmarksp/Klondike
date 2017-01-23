@@ -2,5 +2,9 @@ package klondike.models;
 
 public enum Color {
     RED,
-    BLACK
+    BLACK,
+    OROS,
+    COPAS,
+    ESPADAS,
+    BASTOS
 }

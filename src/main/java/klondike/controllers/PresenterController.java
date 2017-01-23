@@ -3,6 +3,7 @@ package klondike.controllers;
 import klondike.models.Card;
 import klondike.models.CardSuit;
 
+import java.util.List;
 import java.util.Stack;
 
 public interface PresenterController {
@@ -18,4 +19,6 @@ public interface PresenterController {
     int getGameMode();
 
     int getNumTableauStacks();
+
+    List<CardSuit> getCardSuiteValues();
 }

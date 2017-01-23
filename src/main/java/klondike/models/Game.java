@@ -20,13 +20,14 @@ public class Game {
 
     private List<Stack<Card>> tableau;
 
+    private GameMode gameMode;
+
     public Game() {
         state = State.INITIAL;
         waste = new Stack<>();
-        initDeck();
-        initFoundations();
+        deck = new Stack<>();
+        foundations = new HashMap<>();
         initTableau();
-        setTable();
     }
 
     public static int getNumTableauStacks() {
@@ -37,18 +38,49 @@ public class Game {
         return GAME_MODE;
     }
 
-    private void initDeck() {
-        deck = new Stack<>();
-        for (CardSuit cardSuit : CardSuit.values()) {
-            for (CardValue value : CardValue.values()) {
-                deck.push(new Card(value, cardSuit));
-            }
+    public void setTable(GameMode gameMode) {
+        this.gameMode = gameMode;
+        if (gameMode == GameMode.SPANISH) {
+            setSpanishTable();
+        } else {
+            setFrenchTable();
         }
     }
 
-    private void initFoundations() {
-        foundations = new HashMap<>();
-        for (CardSuit value : CardSuit.values()) {
+    private void setSpanishTable() {
+        gatherCards();
+        deck.clear();
+        initSpanishFoundations();
+        for (SpanishCardSuit cardSuit : SpanishCardSuit.values()) {
+            for (SpanishCardValue value : SpanishCardValue.values()) {
+                deck.push(new Card(value, cardSuit));
+            }
+        }
+        setTable();
+    }
+
+    private void setFrenchTable() {
+        gatherCards();
+        deck.clear();
+        initFrenchFoundations();
+        for (FrenchCardSuit cardSuit : FrenchCardSuit.values()) {
+            for (FrenchCardValue value : FrenchCardValue.values()) {
+                deck.push(new Card(value, cardSuit));
+            }
+        }
+        setTable();
+    }
+
+    private void initSpanishFoundations() {
+        foundations.clear();
+        for (SpanishCardSuit value : SpanishCardSuit.values()) {
+            foundations.put(value, new Stack<>());
+        }
+    }
+
+    private void initFrenchFoundations() {
+        foundations.clear();
+        for (FrenchCardSuit value : FrenchCardSuit.values()) {
             foundations.put(value, new Stack<>());
         }
     }
@@ -83,14 +115,26 @@ public class Game {
         }
     }
 
-    public void reset() {
-        gatherCards();
-        setTable();
+    public boolean isGameOver() {
+        if (gameMode == GameMode.SPANISH) {
+            return isSpanishGameOver();
+        } else {
+            return isFrenchGameOver();
+        }
     }
 
-    public boolean isGameOver() {
-        for (CardSuit cardSuit : CardSuit.values()) {
-            if (foundations.get(cardSuit).size() != CardValue.values().length) {
+    private boolean isSpanishGameOver() {
+        for (SpanishCardSuit cardSuit : SpanishCardSuit.values()) {
+            if (foundations.get(cardSuit).size() != SpanishCardValue.values().length) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isFrenchGameOver() {
+        for (FrenchCardSuit cardSuit : FrenchCardSuit.values()) {
+            if (foundations.get(cardSuit).size() != FrenchCardValue.values().length) {
                 return false;
             }
         }
@@ -246,5 +290,15 @@ public class Game {
             return tableau.get(tableauStackIndex).peek();
         }
         return null;
+    }
+
+    public List<CardSuit> getCardSuiteValues() {
+        List<CardSuit> values = new ArrayList<>();
+        if (gameMode == GameMode.SPANISH) {
+            Collections.addAll(values, SpanishCardSuit.values());
+        } else {
+            Collections.addAll(values, FrenchCardSuit.values());
+        }
+        return values;
     }
 }

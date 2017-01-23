@@ -20,7 +20,6 @@ public class ContinueController extends BaseController implements klondike.contr
     public void resume(boolean restart) {
         assert this.getState() == State.FINAL;
         if (restart) {
-            this.reset();
             this.setState(State.INITIAL);
         } else {
             this.setState(State.EXIT);
