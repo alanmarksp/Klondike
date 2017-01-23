@@ -2,7 +2,6 @@ package klondike.controllers.local.move;
 
 import klondike.controllers.Error;
 import klondike.models.Card;
-import klondike.models.CardValue;
 import klondike.models.Game;
 import klondike.utils.ClosedInterval;
 
@@ -18,7 +17,7 @@ public abstract class MoveWithTableauStackAsDestinationController extends MoveCo
         if (!isTableauStackEmpty(tableauStackIndex) && !isCardOnTabelauStackFacedUp(tableauStackIndex)) {
             return Error.DESTINATION_CARD_FACE_DOWN;
         }
-        if (isTableauStackEmpty(tableauStackIndex) && card.getValue() != CardValue.KING || !isTableauStackEmpty(tableauStackIndex) &&
+        if (isTableauStackEmpty(tableauStackIndex) && card.getValue().isMaxValue() || !isTableauStackEmpty(tableauStackIndex) &&
                 card.getSuit().isSameColor(getCardSuitFromTableauStack(tableauStackIndex)) || !isTableauStackEmpty(tableauStackIndex) &&
                 card.getValue().ordinal() + 1 != getCardValueFromTableauStack(tableauStackIndex).ordinal()) {
             return Error.INVALID_MOVE;

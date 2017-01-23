@@ -19,7 +19,7 @@ public class GameView {
         io.writeln("===========================");
         new DeckView(presenterController).show();
         new WasteView(presenterController).show();
-        for (CardSuit cardSuit : CardSuit.values()) {
+        for (CardSuit cardSuit : presenterController.getCardSuiteValues()) {
             new FoundationView(presenterController, cardSuit).show();
         }
         for (int i = 0; i < presenterController.getNumTableauStacks(); i++) {

@@ -1,28 +1,11 @@
 package klondike.models;
 
-public enum CardSuit {
+public interface CardSuit {
 
-    DIAMONDS("oros", Color.RED),
-    HEARTS("copas", Color.RED),
-    SPADES("espadas", Color.BLACK),
-    CLUBS("bastos", Color.BLACK);
+    String toString();
 
-    private String message;
+    boolean isSameColor(CardSuit suit);
 
-    private Color color;
-
-    CardSuit(String message, Color color) {
-        this.message = message;
-        this.color = color;
-    }
-
-    @Override
-    public String toString() {
-        return message;
-    }
-
-    public boolean isSameColor(CardSuit suit) {
-        return this.color == suit.color;
-    }
+    Color getColor();
 
 }

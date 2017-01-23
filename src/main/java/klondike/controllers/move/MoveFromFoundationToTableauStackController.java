@@ -4,6 +4,8 @@ import klondike.controllers.Error;
 import klondike.models.Card;
 import klondike.models.CardSuit;
 
+import java.util.List;
+
 public interface MoveFromFoundationToTableauStackController extends MoveWithTableauStackAsDestinationController {
 
     void pushBack(Card card);
@@ -17,4 +19,6 @@ public interface MoveFromFoundationToTableauStackController extends MoveWithTabl
     Card getDestinationCard();
 
     CardSuit getCardSuit();
+
+    List<CardSuit> getCardSuiteValues();
 }

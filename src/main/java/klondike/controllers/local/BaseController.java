@@ -4,6 +4,7 @@ import klondike.controllers.PresenterController;
 import klondike.models.*;
 import klondike.utils.ClosedInterval;
 
+import java.util.List;
 import java.util.Stack;
 
 public abstract class BaseController implements PresenterController {
@@ -28,14 +29,20 @@ public abstract class BaseController implements PresenterController {
         return game.isGameOver();
     }
 
-    protected void reset() {
-        game.reset();
-    }
-
     protected boolean isCardOnTabelauStackFacedUp(int tableauStackIndex) {
         assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         return game.isCardOnTabelauStackFacedUp(tableauStackIndex);
     }
+
+    protected void setTable(GameMode gameMode) {
+        game.setTable(gameMode);
+    }
+
+    public List<CardSuit> getCardSuiteValues() {
+        return game.getCardSuiteValues();
+    }
+
+    ;
 
     protected void flipUp(int tableauStackIndex) {
         assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
