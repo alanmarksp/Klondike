@@ -8,25 +8,25 @@ import klondike.models.Game;
 import klondike.models.State;
 import klondike.utils.ClosedInterval;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameController extends BaseController implements klondike.controllers.GameController {
 
-    private List<ActionController> actionControllers;
+    private Map<Action, ActionController> actionControllers;
 
     public GameController(Game game) {
         super(game);
-        actionControllers = new ArrayList<>();
-        actionControllers.add(new MoveFromDeckToWasteController(game));
-        actionControllers.add(new MoveFromWasteToDeckController(game));
-        actionControllers.add(new MoveFromWasteToFoundationController(game));
-        actionControllers.add(new MoveFromWasteToTableauStackController(game));
-        actionControllers.add(new MoveFromTableauStackToFoundationController(game));
-        actionControllers.add(new MoveFromTableauStackToTableauStackController(game));
-        actionControllers.add(new MoveFromFoundationToTableauStackController(game));
-        actionControllers.add(new FlipTableauCardController(game));
-        actionControllers.add(new ExitGameController(game));
+        actionControllers = new HashMap<>();
+        actionControllers.put(Action.MOVE_FROM_DECK_TO_WASTE, new MoveFromDeckToWasteController(game));
+        actionControllers.put(Action.MOVE_FROM_WASTE_TO_DECK, new MoveFromWasteToDeckController(game));
+        actionControllers.put(Action.MOVE_FROM_WASTE_TO_FOUNDATION, new MoveFromWasteToFoundationController(game));
+        actionControllers.put(Action.MOVE_FROM_WASTE_TO_TABLEAU_STACK, new MoveFromWasteToTableauStackController(game));
+        actionControllers.put(Action.MOVE_FROM_TABLEAU_STACK_TO_FOUNDATION, new MoveFromTableauStackToFoundationController(game));
+        actionControllers.put(Action.MOVE_FROM_TABLEAU_STACK_TO_TABLEAU_STACK, new MoveFromTableauStackToTableauStackController(game));
+        actionControllers.put(Action.MOVE_FROM_FOUNDATION_TO_TABLEAU_STACK, new MoveFromFoundationToTableauStackController(game));
+        actionControllers.put(Action.FLIP_CARD_ON_TABLEAU_STACK, new FlipTableauCardController(game));
+        actionControllers.put(Action.EXIT_GAME, new ExitGameController(game));
     }
 
     @Override
@@ -38,6 +38,6 @@ public class GameController extends BaseController implements klondike.controlle
     public ActionController getActionController(Action action) {
         assert new ClosedInterval(0, Action.values().length).includes(action.ordinal());
         assert this.getState() == State.IN_GAME;
-        return actionControllers.get(action.ordinal());
+        return actionControllers.get(action);
     }
 }
