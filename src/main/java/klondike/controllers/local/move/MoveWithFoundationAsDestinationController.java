@@ -14,6 +14,8 @@ public abstract class MoveWithFoundationAsDestinationController extends MoveCont
     }
 
     public Error validateDestination(Card card, CardSuit cardSuit) {
+        assert card != null;
+        assert cardSuit != null;
         if (isFoundationEmpty(cardSuit) && card.getValue() != CardValue.ACE || !isFoundationEmpty(cardSuit) &&
                 card.getValue().ordinal() + 1 != getCardValueFromFoundation(cardSuit).ordinal()) {
             return Error.INVALID_MOVE;

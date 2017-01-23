@@ -12,6 +12,7 @@ public class ContinueController extends BaseController implements klondike.contr
 
     @Override
     public void accept(ScenarioControllerVisitor scenarioControllerVisitor) {
+        assert scenarioControllerVisitor != null;
         scenarioControllerVisitor.visit(this);
     }
 

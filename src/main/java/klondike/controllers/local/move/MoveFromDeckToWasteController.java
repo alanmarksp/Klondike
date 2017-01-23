@@ -10,17 +10,17 @@ public class MoveFromDeckToWasteController extends MoveController implements
 
     public MoveFromDeckToWasteController(Game game) {
         super(game);
-        origin = game.getDeck();
-        destination = game.getWaste();
     }
 
     @Override
     public void accept(MoveControllerVisitor moveControllerVisitor) {
+        assert moveControllerVisitor != null;
         moveControllerVisitor.visit(this);
     }
 
     @Override
     public void accept(ErrorView errorView) {
+        assert errorView != null;
         errorView.visit(this);
     }
 
@@ -31,6 +31,7 @@ public class MoveFromDeckToWasteController extends MoveController implements
 
     @Override
     public void push(Card card) {
+        assert card != null;
         pushToWaste(card);
     }
 

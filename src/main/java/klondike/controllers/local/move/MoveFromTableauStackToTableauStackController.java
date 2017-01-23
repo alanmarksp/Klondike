@@ -4,6 +4,7 @@ import klondike.controllers.Error;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
 import klondike.models.Game;
+import klondike.utils.ClosedInterval;
 import klondike.views.console.ErrorView;
 
 import java.util.Stack;
@@ -15,7 +16,7 @@ public class MoveFromTableauStackToTableauStackController extends MoveWithTablea
 
     private int originTableauStackIndex;
 
-    private int destinaitonTableauStackIndex;
+    private int destinationTableauStackIndex;
 
     public MoveFromTableauStackToTableauStackController(Game game) {
         super(game);
@@ -23,26 +24,32 @@ public class MoveFromTableauStackToTableauStackController extends MoveWithTablea
 
     @Override
     public void accept(MoveControllerVisitor moveControllerVisitor) {
+        assert moveControllerVisitor != null;
         moveControllerVisitor.visit(this);
     }
 
     @Override
     public void accept(ErrorView errorView) {
+        assert errorView != null;
         errorView.visit(this);
     }
 
     @Override
     public Card pop() {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(originTableauStackIndex);
         return popFromTableauStack(originTableauStackIndex);
     }
 
     @Override
     public void push(Card card) {
-        pushToTableauStack(card, destinaitonTableauStackIndex);
+        assert card != null;
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(destinationTableauStackIndex);
+        pushToTableauStack(card, destinationTableauStackIndex);
     }
 
     @Override
     public Error validateOrigin() {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(originTableauStackIndex);
         Error error = super.validateOrigin();
         if (error != null) {
             return error;
@@ -55,27 +62,30 @@ public class MoveFromTableauStackToTableauStackController extends MoveWithTablea
 
     @Override
     protected boolean isOriginEmpty() {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(originTableauStackIndex);
         return isTableauStackEmpty(originTableauStackIndex);
     }
 
     @Override
     public Error validateDestination(Card card) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(destinationTableauStackIndex);
+        assert card != null;
         if (!card.isFaceUp()) {
             return Error.ORIGIN_CARD_FACE_DOWN;
         }
-        return super.validateDestination(card, destinaitonTableauStackIndex);
+        return super.validateDestination(card, destinationTableauStackIndex);
     }
 
     @Override
     public void setOrigin(int tableauStackIndex) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         originTableauStackIndex = tableauStackIndex;
-        origin = getTableauStack(tableauStackIndex);
     }
 
     @Override
     public void setDestination(int tableauStackIndex) {
-        destinaitonTableauStackIndex = tableauStackIndex;
-        destination = getTableauStack(tableauStackIndex);
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
+        destinationTableauStackIndex = tableauStackIndex;
     }
 
     @Override
@@ -103,16 +113,20 @@ public class MoveFromTableauStackToTableauStackController extends MoveWithTablea
 
     @Override
     public Card getDestinationCard() {
-        return peeKTableauStack(destinaitonTableauStackIndex);
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(destinationTableauStackIndex);
+        return peeKTableauStack(destinationTableauStackIndex);
     }
 
     @Override
     public int getTableauStackIndex() {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(originTableauStackIndex);
         return originTableauStackIndex;
     }
 
     @Override
     public void pushBack(Card card) {
+        assert card != null;
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(originTableauStackIndex);
         pushToTableauStack(card, originTableauStackIndex);
     }
 }

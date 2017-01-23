@@ -12,6 +12,7 @@ public class ExitGameController extends BaseController implements klondike.contr
 
     @Override
     public void accept(ActionControllerVisitor actionControllerVisitor) {
+        assert actionControllerVisitor != null;
         actionControllerVisitor.visit(this);
     }
 

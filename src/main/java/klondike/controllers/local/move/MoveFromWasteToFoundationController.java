@@ -14,16 +14,17 @@ public class MoveFromWasteToFoundationController extends MoveWithFoundationAsDes
 
     public MoveFromWasteToFoundationController(Game game) {
         super(game);
-        origin = game.getWaste();
     }
 
     @Override
     public void accept(MoveControllerVisitor moveControllerVisitor) {
+        assert moveControllerVisitor != null;
         moveControllerVisitor.visit(this);
     }
 
     @Override
     public void accept(ErrorView errorView) {
+        assert errorView != null;
         errorView.visit(this);
     }
 
@@ -34,6 +35,8 @@ public class MoveFromWasteToFoundationController extends MoveWithFoundationAsDes
 
     @Override
     public void push(Card card) {
+        assert card != null;
+        assert cardSuit != null;
         pushToFoundation(card, cardSuit);
     }
 
@@ -44,13 +47,15 @@ public class MoveFromWasteToFoundationController extends MoveWithFoundationAsDes
 
     @Override
     public Error validateDestination(Card card) {
+        assert card != null;
+        assert cardSuit != null;
         return super.validateDestination(card, cardSuit);
     }
 
     @Override
     public void setDestination(CardSuit cardSuit) {
+        assert cardSuit != null;
         this.cardSuit = cardSuit;
-        destination = getFoundation(cardSuit);
     }
 
     @Override
@@ -60,11 +65,13 @@ public class MoveFromWasteToFoundationController extends MoveWithFoundationAsDes
 
     @Override
     public Card getDestinationCard() {
+        assert cardSuit != null;
         return peekFoundation(cardSuit);
     }
 
     @Override
     public void pushBack(Card card) {
+        assert card != null;
         pushToWaste(card);
     }
 }

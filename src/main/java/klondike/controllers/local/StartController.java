@@ -18,6 +18,7 @@ public class StartController extends BaseController implements klondike.controll
 
     @Override
     public void accept(ScenarioControllerVisitor scenarioControllerVisitor) {
+        assert scenarioControllerVisitor != null;
         scenarioControllerVisitor.visit(this);
     }
 }

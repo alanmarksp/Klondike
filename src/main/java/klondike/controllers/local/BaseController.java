@@ -124,6 +124,7 @@ public abstract class BaseController implements PresenterController {
     }
 
     protected int getTableauStackSize(int tableauStackIndex) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         return game.getTableauStackSize(tableauStackIndex);
     }
 

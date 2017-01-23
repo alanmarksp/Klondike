@@ -6,7 +6,6 @@ import klondike.controllers.local.move.*;
 import klondike.controllers.visitors.ScenarioControllerVisitor;
 import klondike.models.Game;
 import klondike.models.State;
-import klondike.utils.ClosedInterval;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,12 +30,13 @@ public class GameController extends BaseController implements klondike.controlle
 
     @Override
     public void accept(ScenarioControllerVisitor scenarioControllerVisitor) {
+        assert scenarioControllerVisitor != null;
         scenarioControllerVisitor.visit(this);
     }
 
     @Override
     public ActionController getActionController(Action action) {
-        assert new ClosedInterval(0, Action.values().length).includes(action.ordinal());
+        assert action != null;
         assert this.getState() == State.IN_GAME;
         return actionControllers.get(action);
     }

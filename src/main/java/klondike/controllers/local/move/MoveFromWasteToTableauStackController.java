@@ -4,6 +4,7 @@ import klondike.controllers.Error;
 import klondike.controllers.visitors.MoveControllerVisitor;
 import klondike.models.Card;
 import klondike.models.Game;
+import klondike.utils.ClosedInterval;
 import klondike.views.console.ErrorView;
 
 public class MoveFromWasteToTableauStackController extends MoveWithTableauStackAsDestinationController implements
@@ -13,16 +14,17 @@ public class MoveFromWasteToTableauStackController extends MoveWithTableauStackA
 
     public MoveFromWasteToTableauStackController(Game game) {
         super(game);
-        origin = game.getWaste();
     }
 
     @Override
     public void accept(MoveControllerVisitor moveControllerVisitor) {
+        assert moveControllerVisitor != null;
         moveControllerVisitor.visit(this);
     }
 
     @Override
     public void accept(ErrorView errorView) {
+        assert errorView != null;
         errorView.visit(this);
     }
 
@@ -33,6 +35,8 @@ public class MoveFromWasteToTableauStackController extends MoveWithTableauStackA
 
     @Override
     public void push(Card card) {
+        assert card != null;
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         pushToTableauStack(card, tableauStackIndex);
     }
 
@@ -43,13 +47,15 @@ public class MoveFromWasteToTableauStackController extends MoveWithTableauStackA
 
     @Override
     public Error validateDestination(Card card) {
+        assert card != null;
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         return super.validateDestination(card, tableauStackIndex);
     }
 
     @Override
     public void setDestination(int tableauStackIndex) {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         this.tableauStackIndex = tableauStackIndex;
-        destination = getTableauStack(tableauStackIndex);
     }
 
     @Override
@@ -59,11 +65,13 @@ public class MoveFromWasteToTableauStackController extends MoveWithTableauStackA
 
     @Override
     public Card getDestinationCard() {
+        assert new ClosedInterval(0, getNumTableauStacks() - 1).includes(tableauStackIndex);
         return peeKTableauStack(tableauStackIndex);
     }
 
     @Override
     public void pushBack(Card card) {
+        assert card != null;
         pushToWaste(card);
     }
 }

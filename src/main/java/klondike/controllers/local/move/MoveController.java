@@ -3,17 +3,10 @@ package klondike.controllers.local.move;
 import klondike.controllers.Error;
 import klondike.controllers.local.BaseController;
 import klondike.controllers.visitors.ActionControllerVisitor;
-import klondike.models.Card;
 import klondike.models.Game;
 import klondike.models.State;
 
-import java.util.Stack;
-
 public abstract class MoveController extends BaseController implements klondike.controllers.move.MoveController {
-
-    protected Stack<Card> origin;
-
-    protected Stack<Card> destination;
 
     MoveController(Game game) {
         super(game);
@@ -21,9 +14,9 @@ public abstract class MoveController extends BaseController implements klondike.
 
     @Override
     public void accept(ActionControllerVisitor actionControllerVisitor) {
+        assert actionControllerVisitor != null;
         actionControllerVisitor.visit(this);
     }
-
 
     @Override
     public void finishGame() {
