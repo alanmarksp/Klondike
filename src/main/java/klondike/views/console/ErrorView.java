@@ -1,6 +1,7 @@
 package klondike.views.console;
 
 import klondike.controllers.Error;
+import klondike.controllers.FlipTableauCardController;
 import klondike.controllers.move.*;
 import klondike.models.Card;
 import klondike.utils.IO;
@@ -18,14 +19,17 @@ public class ErrorView {
     }
 
     public void interact(MoveController moveController) {
+        assert moveController != null;
         moveController.accept(this);
     }
 
     private void showError(String errorMsg) {
+        assert errorMsg != null;
         io.writeln("Error!!! " + errorMsg);
     }
 
     private void showInvalidMoveError(Card origin, Card destination) {
+        assert origin != null;
         io.write("Error!!! No se puede poner ");
         new CardView(origin).show();
         io.write(" sobre ");
@@ -39,10 +43,12 @@ public class ErrorView {
 
     public void visit(MoveFromDeckToWasteController moveFromDeckToWasteController) {
         assert error == Error.EMPTY_STACK;
+        assert moveFromDeckToWasteController != null;
         showError("La baraja está vacía");
     }
 
     public void visit(MoveFromFoundationToTableauStackController moveFromFoundationToTableauStackController) {
+        assert moveFromFoundationToTableauStackController != null;
         switch (error) {
             case EMPTY_STACK:
                 showError("El Palo de " + moveFromFoundationToTableauStackController.getCardSuit() +
@@ -59,6 +65,7 @@ public class ErrorView {
     }
 
     public void visit(MoveFromTableauStackToFoundationController moveFromTableauStackToFoundationController) {
+        assert moveFromTableauStackToFoundationController != null;
         switch (error) {
             case EMPTY_STACK:
                 showError("La escalera " + moveFromTableauStackToFoundationController.getTableauStackIndex() +
@@ -72,6 +79,7 @@ public class ErrorView {
     }
 
     public void visit(MoveFromTableauStackToTableauStackController moveFromTableauStackToTableauStackController) {
+        assert moveFromTableauStackToTableauStackController != null;
         switch (error) {
             case EMPTY_STACK:
                 showError("La escalera " + moveFromTableauStackToTableauStackController.getTableauStackIndex() +
@@ -95,6 +103,7 @@ public class ErrorView {
     }
 
     public void visit(MoveFromWasteToDeckController moveFromWasteToDeckController) {
+        assert moveFromWasteToDeckController != null;
         switch (error) {
             case EMPTY_STACK:
                 showError("El descarte esta vacío");
@@ -106,6 +115,7 @@ public class ErrorView {
     }
 
     public void visit(MoveFromWasteToFoundationController moveFromWasteToFoundationController) {
+        assert moveFromWasteToFoundationController != null;
         switch (error) {
             case EMPTY_STACK:
                 showError("El descarte esta vacío");
@@ -118,6 +128,7 @@ public class ErrorView {
     }
 
     public void visit(MoveFromWasteToTableauStackController moveFromWasteToTableauStackController) {
+        assert moveFromWasteToTableauStackController != null;
         switch (error) {
             case EMPTY_STACK:
                 showError("El descarte esta vacío");
@@ -130,5 +141,11 @@ public class ErrorView {
                 showError("No se puede mover sobre una carta cubierta");
                 break;
         }
+    }
+
+    public void interact(FlipTableauCardController flipTableauCardController) {
+        assert error == Error.ALREADY_FACE_UP;
+        assert flipTableauCardController != null;
+        showError("No se puede voltear una carta descubierta");
     }
 }

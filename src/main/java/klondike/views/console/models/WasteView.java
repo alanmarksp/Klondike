@@ -10,6 +10,7 @@ public class WasteView extends StackView {
     private int gameMode;
 
     public WasteView(PresenterController presenterController) {
+        assert presenterController != null;
         setCards(presenterController.getWaste());
         this.gameMode = presenterController.getGameMode();
         setTitle("Descarte: ");

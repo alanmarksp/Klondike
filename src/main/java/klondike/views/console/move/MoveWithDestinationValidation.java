@@ -8,6 +8,8 @@ import klondike.views.console.ErrorView;
 public abstract class MoveWithDestinationValidation extends MoveWithOriginValidation {
 
     protected boolean validateDestination(Card card, MoveWithDestinationValidationController moveWithDestinationValidationController) {
+        assert card != null;
+        assert moveWithDestinationValidationController != null;
         Error error = moveWithDestinationValidationController.validateDestination(card);
         if (error != null) {
             pushBack(moveWithDestinationValidationController);

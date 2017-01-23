@@ -17,6 +17,7 @@ public class MoveFromTableauStackToTableauStackView extends MoveWithDestinationV
     private Stack<Card> tempCardStack;
 
     public void interact(MoveFromTableauStackToTableauStackController moveFromTableauStackToTableauStackController) {
+        assert moveFromTableauStackToTableauStackController != null;
         prepareController(moveFromTableauStackToTableauStackController);
         if (validateOrigin(moveFromTableauStackToTableauStackController)) {
             tempCardStack = new Stack<>();
@@ -34,6 +35,7 @@ public class MoveFromTableauStackToTableauStackView extends MoveWithDestinationV
     }
 
     private void prepareController(MoveFromTableauStackToTableauStackController moveFromTableauStackToTableauStackController) {
+        assert moveFromTableauStackToTableauStackController != null;
         int numTableauStacks = moveFromTableauStackToTableauStackController.getNumTableauStacks();
         int originTableauStackIndex = new LimitedIntDialog("De que escalera?", numTableauStacks).read() - 1;
         moveFromTableauStackToTableauStackController.setOrigin(originTableauStackIndex);
@@ -44,6 +46,8 @@ public class MoveFromTableauStackToTableauStackView extends MoveWithDestinationV
 
     @Override
     protected void pushBack(MoveWithDestinationValidationController moveWithDestinationValidationController) {
+        assert moveWithDestinationValidationController != null;
+        assert tempCardStack != null;
         while (!tempCardStack.isEmpty()) {
             moveWithDestinationValidationController.pushBack(tempCardStack.pop());
         }

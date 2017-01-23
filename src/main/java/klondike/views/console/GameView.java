@@ -12,6 +12,7 @@ public class GameView {
     }
 
     void interact(GameController gameController) {
+        assert gameController != null;
         actionView.interact(gameController.getActionController(Action.values()[new MenuView().getOption()]));
     }
 }

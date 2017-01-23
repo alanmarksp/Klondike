@@ -7,11 +7,13 @@ import klondike.utils.LimitedIntDialog;
 public class MoveFromFoundationToTableauStackView extends MoveWithTableauStackAsDestination {
 
     public void interact(MoveFromFoundationToTableauStackController moveFromFoundationToTableauStackController) {
+        assert moveFromFoundationToTableauStackController != null;
         prepareController(moveFromFoundationToTableauStackController);
         super.interact(moveFromFoundationToTableauStackController);
     }
 
     private void prepareController(MoveFromFoundationToTableauStackController moveFromFoundationToTableauStackController) {
+        assert moveFromFoundationToTableauStackController != null;
         int cardSuitIndex = new LimitedIntDialog("De que palo?", CardSuit.values().length).read() - 1;
         moveFromFoundationToTableauStackController.setOrigin(CardSuit.values()[cardSuitIndex]);
         int numTableauStacks = moveFromFoundationToTableauStackController.getNumTableauStacks();

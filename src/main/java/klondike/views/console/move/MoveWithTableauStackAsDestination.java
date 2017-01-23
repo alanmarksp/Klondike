@@ -11,6 +11,7 @@ public abstract class MoveWithTableauStackAsDestination extends MoveWithDestinat
     private Card card;
 
     protected void interact(MoveWithTableauStackAsDestinationController moveWithTableauStackAsDestinationController) {
+        assert moveWithTableauStackAsDestinationController != null;
         if (validateOrigin(moveWithTableauStackAsDestinationController)) {
             card = moveWithTableauStackAsDestinationController.pop();
             if (validateDestination(card, moveWithTableauStackAsDestinationController)) {
@@ -23,6 +24,8 @@ public abstract class MoveWithTableauStackAsDestination extends MoveWithDestinat
 
     @Override
     protected void pushBack(MoveWithDestinationValidationController moveWithDestinationValidationController) {
+        assert moveWithDestinationValidationController != null;
+        assert card != null;
         moveWithDestinationValidationController.pushBack(card);
     }
 }

@@ -10,6 +10,7 @@ public class CardView {
     private IO io = new IO();
 
     public CardView(Card card) {
+        assert card != null;
         this.card = card;
     }
 

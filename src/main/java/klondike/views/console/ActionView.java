@@ -6,14 +6,11 @@ import klondike.controllers.ExitGameController;
 import klondike.controllers.FlipTableauCardController;
 import klondike.controllers.move.MoveController;
 import klondike.controllers.visitors.ActionControllerVisitor;
-import klondike.utils.IO;
 import klondike.utils.LimitedIntDialog;
 import klondike.views.console.models.GameView;
 import klondike.views.console.move.MoveView;
 
 public class ActionView implements ActionControllerVisitor {
-
-    private IO io = new IO();
 
     private MoveView moveView;
 
@@ -22,16 +19,19 @@ public class ActionView implements ActionControllerVisitor {
     }
 
     public void interact(ActionController actionController) {
+        assert actionController != null;
         actionController.accept(this);
     }
 
     @Override
     public void visit(MoveController moveController) {
+        assert moveController != null;
         moveView.interact(moveController);
     }
 
     @Override
     public void visit(FlipTableauCardController flipTableauCardController) {
+        assert flipTableauCardController != null;
         int numTableauStacks = flipTableauCardController.getNumTableauStacks();
         int tableauStackIndex = new LimitedIntDialog("En que escalera?", numTableauStacks).read() - 1;
         Error error = flipTableauCardController.validateFlip(tableauStackIndex);
@@ -40,13 +40,13 @@ public class ActionView implements ActionControllerVisitor {
             new GameView(flipTableauCardController).show();
             new MenuView().show();
         } else {
-            // TODO Mostrar error
-            io.writeln(error.toString());
+            new ErrorView(error).interact(flipTableauCardController);
         }
     }
 
     @Override
     public void visit(ExitGameController exitGameController) {
+        assert exitGameController != null;
         exitGameController.exit();
     }
 }

@@ -11,6 +11,7 @@ public abstract class MoveWithFoundationAsDestination extends MoveWithDestinatio
     private Card card;
 
     protected void interact(MoveWithFoundationAsDestinationController moveWithFoundationAsDestinationController) {
+        assert moveWithFoundationAsDestinationController != null;
         if (validateOrigin(moveWithFoundationAsDestinationController)) {
             card = moveWithFoundationAsDestinationController.pop();
             moveWithFoundationAsDestinationController.setDestination(card.getSuit());
@@ -28,6 +29,8 @@ public abstract class MoveWithFoundationAsDestination extends MoveWithDestinatio
 
     @Override
     protected void pushBack(MoveWithDestinationValidationController moveWithDestinationValidationController) {
+        assert moveWithDestinationValidationController != null;
+        assert card != null;
         moveWithDestinationValidationController.pushBack(card);
     }
 }

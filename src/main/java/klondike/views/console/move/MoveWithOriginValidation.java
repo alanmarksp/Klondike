@@ -7,6 +7,7 @@ import klondike.views.console.ErrorView;
 public abstract class MoveWithOriginValidation {
 
     protected boolean validateOrigin(MoveController moveController) {
+        assert moveController != null;
         Error error = moveController.validateOrigin();
         if (error != null) {
             new ErrorView(error).interact(moveController);

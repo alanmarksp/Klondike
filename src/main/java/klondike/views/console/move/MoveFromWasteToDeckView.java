@@ -9,6 +9,7 @@ import klondike.views.console.models.GameView;
 public class MoveFromWasteToDeckView extends MoveWithOriginValidation {
 
     public void interact(MoveFromWasteToDeckController moveFromWasteToDeckController) {
+        assert moveFromWasteToDeckController != null;
         if (validateOrigin(moveFromWasteToDeckController)) {
             Error error = moveFromWasteToDeckController.validateDestination();
             if (error != null) {

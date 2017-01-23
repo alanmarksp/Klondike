@@ -14,6 +14,7 @@ public abstract class StackView {
     private String title;
 
     protected void setTitle(String title) {
+        assert title != null;
         this.title = title;
     }
 
@@ -32,6 +33,7 @@ public abstract class StackView {
     }
 
     protected void showCard(Card card) {
+        assert card != null;
         new CardView(card).show();
     }
 
@@ -40,6 +42,7 @@ public abstract class StackView {
     }
 
     public void setCards(Stack<Card> cards) {
+        assert cards != null;
         this.cards = cards;
     }
 }

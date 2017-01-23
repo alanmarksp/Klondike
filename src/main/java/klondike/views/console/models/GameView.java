@@ -11,6 +11,7 @@ public class GameView {
     private PresenterController presenterController;
 
     public GameView(PresenterController presenterController) {
+        assert presenterController != null;
         this.presenterController = presenterController;
     }
 
